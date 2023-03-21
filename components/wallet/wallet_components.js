@@ -57,23 +57,8 @@ export function TrendGraph({ userTransactions }) {
         <Line data={data} options={options} />
     )
 }
-export function TransactionsTabel({ userTransactions, userId }) {
-
-    const [userTags, setUserTags] = useState([])
-
-    class userTag{
-        tag_id = 0;
-        tag_name= "";
-    }
-
-    useEffect(() => {
-        async function awaitUserGetTags() {
-            const userTagsJson = await getUserTags(userId)
-            setUserTags(deserialize(userTag, JSON.stringify(userTagsJson)))
-        }
-        awaitUserGetTags()
-    }, [])
-
+export function TransactionsTabel({ userTransactions, userTags }) {
+//useEffect [selected value] --> updateTransactionTag(transction_id, selectedTag)
     return (
         <>
             <Table

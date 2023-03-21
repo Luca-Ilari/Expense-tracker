@@ -45,7 +45,8 @@ function Login({ setUserName, setUserId }) {
                             <Text h3>Login</Text>
                             <Spacer y={1.5} />
                             <Input
-                            ref={name}
+                                aria-label="Username"
+                                ref={name}
                                 clearable
                                 bordered
                                 width="60%"
@@ -60,6 +61,7 @@ function Login({ setUserName, setUserId }) {
                         <Col>
                             <Spacer y={1} />
                             <Input.Password
+                                aria-label="Password"
                                 ref={pw}
                                 clearable
                                 bordered

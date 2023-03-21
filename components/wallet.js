@@ -1,13 +1,14 @@
 import { useRef, useState, useEffect } from 'react';
 import { Row, Container, Col, Text, Spacer } from '@nextui-org/react';
 import { TrendGraph, Saldo, TransactionsTabel } from './wallet/wallet_components';
-import { tryGetTransactions } from "../lib/api_query";
+import { tryGetTransactions, getUserTags } from "../lib/api_query";
 import { deserialize } from 'class-transformer';
 import AddTransactionFrom from './wallet/add_transaction_form';
 
 export default function Wallet({ walletId, userId }) {
     const [userTransactions, setUserTransactions] = useState([])
     const [refresh, setRefresh] = useState(false)
+    const [userTags, setUserTags] = useState([])
 
     class userTransaction {
         transaction_id = 0;
@@ -19,6 +20,11 @@ export default function Wallet({ walletId, userId }) {
         tag_name = "";
     }
 
+    class userTag{
+        tag_id = 0;
+        tag_name= "";
+    }
+
     useEffect(() => {
         async function awaitGetTransactions() {
             const transactionsJson = await tryGetTransactions(walletId);
@@ -28,6 +34,13 @@ export default function Wallet({ walletId, userId }) {
         awaitGetTransactions();
     }, [walletId, refresh]);
 
+    useEffect(() => {
+        async function awaitUserGetTags() {
+            const userTagsJson = await getUserTags(userId)
+            setUserTags(deserialize(userTag, JSON.stringify(userTagsJson)))
+        }
+        awaitUserGetTags()
+    }, [])
 
     return (
         <>
@@ -36,7 +49,7 @@ export default function Wallet({ walletId, userId }) {
                     {/* Tablella transazioni */}
                     <Col>
                         <Text h2>Your transactions</Text>
-                        <TransactionsTabel userTransactions={userTransactions} userId={userId} />
+                        <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
                     </Col>
 
                     {/* GRAFICO */}
@@ -52,7 +65,6 @@ export default function Wallet({ walletId, userId }) {
                 {/* Form per aggiungere campo */}
                 <Row>
                     <Col>
-                    <AddTransactionFrom setRefresh={setRefresh} walletId={walletId} userTags={userTags}/>
                     </Col>
                 </Row>
             </Container>

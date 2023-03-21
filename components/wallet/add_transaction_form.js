@@ -1,11 +1,12 @@
 import { addTransaction } from "../../lib/api_query";
-import { Text, Input, Button, Grid } from "@nextui-org/react";
-import { useRef } from "react";
+import { Text, Input, Button, Grid, Dropdown } from "@nextui-org/react";
+import { useRef, useState } from "react";
 
 export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
     const inputDate = useRef(null)
     const inputAmount = useRef(0)
     const inputDesc = useRef("")
+    const [selected, setSelected] = useState()
 
     function checkRequired() {
         if (inputDate.current.value === "") {
