@@ -1,0 +1,16 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+#supabase auth
+lib/supabase.js
+# Your supabase.js should look like this
+# import { createClient } from '@supabase/supabase-js'
+# export const supabase = createClient('replace_with_SUPABASE_URL', 'replace_with_ANON_KEY')
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+
+# production
+/build
