@@ -51,7 +51,7 @@ function Login({ setUserName, setUserId }) {
                                 width="60%"
                                 color="primary"
                                 size="lg"
-                                placeholder="Email"
+                                placeholder="Username"
                                 contentLeft={<Mail fill="currentColor" />}
                             />
                         </Col>
