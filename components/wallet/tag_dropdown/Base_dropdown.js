@@ -10,6 +10,7 @@ export function BaseDropDown({ tagName, userTags }) {
         }
         awaitUserGetTags()
     }, [])
+    console.log("selected" + selectedValue);
 
     const selectedValue = useMemo(
         () => Array.from(selected).join(", ").replaceAll("_", " "),
