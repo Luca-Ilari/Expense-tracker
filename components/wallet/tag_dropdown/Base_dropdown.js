@@ -1,7 +1,7 @@
 import { Dropdown } from '@nextui-org/react';
 import { useMemo, useState } from 'react';
 
-export function TransactionTags({ tagName, userTags }) {
+export function BaseDropDown({ tagName, userTags }) {
     const [selected, setSelected] = useState("")
 
     useMemo(() => {

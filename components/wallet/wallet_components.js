@@ -21,10 +21,7 @@ ChartJS.register(
 )
 
 import { Text, Table } from '@nextui-org/react';
-import { TransactionTags } from './tag';
-import { useEffect,useState } from 'react';
-import { getUserTags } from '../../lib/api_query';
-import { deserialize } from 'class-transformer';
+import EditTransactionTagPicker from './tag_dropdown/Edit_transaction_tag_picker';
 
 export function TrendGraph({ userTransactions }) {
     var summary = 0;
@@ -81,14 +78,14 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                             <Table.Cell>{transaction.amount}</Table.Cell>
                             <Table.Cell>{transaction.date}</Table.Cell>
                             <Table.Cell>{transaction.description}</Table.Cell>
-                            <Table.Cell><TransactionTags tagName={transaction.tag_name} userTags={userTags}/></Table.Cell>
+                            <Table.Cell><EditTransactionTagPicker tagName={transaction.tag_name} userTags={userTags}/></Table.Cell>
                         </Table.Row>
                         
                     ))}
                 </Table.Body>
                 <Table.Pagination
                     align="center"
-                    rowsPerPage={7}
+                    rowsPerPage={6}
                     onPageChange={(page) => console.log({ page })}
                 >
 
