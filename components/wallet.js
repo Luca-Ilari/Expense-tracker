@@ -65,6 +65,7 @@ export default function Wallet({ walletId, userId }) {
                 {/* Form per aggiungere campo */}
                 <Row>
                     <Col>
+                    <AddTransactionFrom setRefresh={setRefresh} walletId={walletId} userTags={userTags}/>
                     </Col>
                 </Row>
             </Container>

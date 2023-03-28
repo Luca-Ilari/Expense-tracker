@@ -1,16 +1,15 @@
 import { Dropdown } from '@nextui-org/react';
 import { useMemo, useState } from 'react';
 
-export function BaseDropDown({ tagName, userTags }) {
+export function BaseDropDown({ tagName, userTags, selectedTag }) {
     const [selected, setSelected] = useState("")
 
     useMemo(() => {
-        async function awaitUserGetTags() {
-            setSelected(new Set([tagName]))
+        async function awaitUserTags() {
+            selectedTag(new Set([tagName]))
         }
-        awaitUserGetTags()
+        awaitUserTags()
     }, [])
-    console.log("selected" + selectedValue);
 
     const selectedValue = useMemo(
         () => Array.from(selected).join(", ").replaceAll("_", " "),
@@ -30,7 +29,7 @@ export function BaseDropDown({ tagName, userTags }) {
                         disallowEmptySelection
                         selectionMode="single"
                         selectedKeys={selected}
-                        onSelectionChange={setSelected}
+                        onSelectionChange={selectedTag}
                     >
                         {userTags.map(tag => (
                             <Dropdown.Item key={tag.tag_name}>{tag.tag_name}</Dropdown.Item>

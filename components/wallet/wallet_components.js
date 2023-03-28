@@ -88,7 +88,6 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                     rowsPerPage={6}
                     onPageChange={(page) => console.log({ page })}
                 >
-
                 </Table.Pagination>
             </Table>
         </>

@@ -1,12 +1,15 @@
 import { addTransaction } from "../../lib/api_query";
-import { Text, Input, Button, Grid, Dropdown } from "@nextui-org/react";
+import { Input, Button, Grid } from "@nextui-org/react";
 import { useRef, useState } from "react";
+import EditTransactionTagPicker from "./tag_dropdown/Edit_transaction_tag_picker";
 
 export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
     const inputDate = useRef(null)
     const inputAmount = useRef(0)
     const inputDesc = useRef("")
-    const [selected, setSelected] = useState()
+    const inputTag = useRef("")
+    //const [ inputTag, setInputTag ] = useState("")
+    //const [selected, setSelected] = useState()
 
     function checkRequired() {
         if (inputDate.current.value === "") {
@@ -19,6 +22,7 @@ export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
         }
     }
     function getInput() {
+        console.log(inputTag);
         if (checkRequired()) {
             console.log("yes");
             addTransaction(inputDate.current.value, inputAmount.current.value, inputDesc.current.value, walletId, 3)
@@ -38,26 +42,10 @@ export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
                         <Input ref={inputAmount} type="number" id="amount" required></Input>
                     </Grid>
                     <Grid>
-                        <Input ref={inputDesc} type="texr" id="text" required></Input>
+                        <Input ref={inputDesc} type="text" id="text" required></Input>
                     </Grid>
                     <Grid>
-                        <Dropdown>
-                            <Dropdown.Button light css={{ tt: "capitalize" }}>
-                                {selectedValue}
-                            </Dropdown.Button>
-                            <Dropdown.Menu
-                                aria-label="Tag selection"
-                                color="secondary"
-                                disallowEmptySelection
-                                selectionMode="single"
-                                selectedKeys={selected}
-                                onSelectionChange={setSelected}
-                            >
-                                {userTags.map(tag => (
-                                    <Dropdown.Item key={tag.tag_name}>{tag.tag_name}</Dropdown.Item>
-                                ))}
-                            </Dropdown.Menu>
-                        </Dropdown>
+                        <EditTransactionTagPicker selectedTag={selectedTag} tagName={"tag"} userTags={userTags}/>
                     </Grid>
                     <Grid>
                         <Button onPress={getInput}>Add</Button>
