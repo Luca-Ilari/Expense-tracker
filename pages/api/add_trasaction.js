@@ -16,7 +16,7 @@ export default async function handler(req, res) {
                 },
             ])
         if (error === null) {
-            res.status(200).json({ sium: 'siumm' });
+            res.status(200).json({ error: error });
         }
     }
 }
