@@ -1,8 +1,8 @@
 import { BaseDropDown } from "./Base_dropdown"
 
-export default function EditTransactionTagPicker({ setInputTag, tagName, userTags }) {
-
+export default function NewTransactionTagPicker({ setInputTag, tagName, userTags }) {
+    
     return (
-        <BaseDropDown tagName={tagName} userTags={userTags} />
+        <BaseDropDown defaultText={tagName} userTags={userTags} />
     )
 }

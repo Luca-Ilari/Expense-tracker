@@ -1,15 +1,14 @@
 import { addTransaction } from "../../lib/api_query";
 import { Input, Button, Grid } from "@nextui-org/react";
 import { useRef, useState } from "react";
-import EditTransactionTagPicker from "./tag_dropdown/Edit_transaction_tag_picker";
+import NewTransactionTagPicker from "./tag_dropdown/Edit_transaction_tag_picker";
 
 export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
     const inputDate = useRef(null)
     const inputAmount = useRef(0)
     const inputDesc = useRef("")
-    const inputTag = useRef("")
     //const [ inputTag, setInputTag ] = useState("")
-    //const [selected, setSelected] = useState()
+    const [selectedTag, setSelectedTag] = useState()
 
     function checkRequired() {
         if (inputDate.current.value === "") {
@@ -45,7 +44,7 @@ export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
                         <Input ref={inputDesc} type="text" id="text" required></Input>
                     </Grid>
                     <Grid>
-                        <EditTransactionTagPicker selectedTag={selectedTag} tagName={"tag"} userTags={userTags}/>
+                        <NewTransactionTagPicker selectedTag={selectedTag} tagName={"tag"} userTags={userTags}/>
                     </Grid>
                     <Grid>
                         <Button onPress={getInput}>Add</Button>

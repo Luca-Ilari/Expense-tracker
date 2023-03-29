@@ -55,7 +55,6 @@ export function TrendGraph({ userTransactions }) {
     )
 }
 export function TransactionsTabel({ userTransactions, userTags }) {
-//useEffect [selected value] --> updateTransactionTag(transction_id, selectedTag)
     return (
         <>
             <Table
@@ -78,7 +77,7 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                             <Table.Cell>{transaction.amount}</Table.Cell>
                             <Table.Cell>{transaction.date}</Table.Cell>
                             <Table.Cell>{transaction.description}</Table.Cell>
-                            <Table.Cell><EditTransactionTagPicker tagName={transaction.tag_name} userTags={userTags}/></Table.Cell>
+                            <Table.Cell><EditTransactionTagPicker transactionId={transaction.transaction_id} initialTag={transaction.tag_name} userTags={userTags}/></Table.Cell>
                         </Table.Row>
                         
                     ))}
