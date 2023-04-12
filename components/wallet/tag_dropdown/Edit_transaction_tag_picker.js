@@ -12,6 +12,7 @@ export default function EditTransactionTagPicker({ transactionId, initialTag, in
 
         if (selectedTagId != initialTagId) {
             updateTransctionTag()
+            console.log("userTags" + JSON.stringify(userTags));
             console.log("setting tag to " + selectedTagId + " transaction id " + transactionId);
         }
     }, [selectedTagId])
