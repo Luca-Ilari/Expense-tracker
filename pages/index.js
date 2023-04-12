@@ -4,6 +4,7 @@ import Main from "../components/main"
 
 /*  TO-DO
 add transactions
+Tag name MUST BE DIFFERENT
 */
 
 function HomePage() {

@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Row, Container, Col, Text, Spacer } from '@nextui-org/react';
 import { TrendGraph, Saldo, TransactionsTabel } from './wallet/wallet_components';
 import { tryGetTransactions, getUserTags } from "../lib/api_query";

@@ -1,16 +1,25 @@
 import { Dropdown } from '@nextui-org/react';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
-export function BaseDropDown({ defaultText, userTags, setSelectedTag }) {
-    const [selected, setSelected] = useState(new Set([defaultText]));
-    
+export function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
+    const [selected, setSelected] = useState(new Set([defaultText]))
     const selectedValue = useMemo(
         () => Array.from(selected).join(", ").replaceAll("_", " "),
         [selected]
-    );
+    )
 
+    useEffect(() => {
+        return () => {
+            setSelectedTagId(JSON.stringify(findTagId()))
+        }
+    }, [selectedValue])
+
+    function findTagId() {
+        const tagFound = userTags.find(e => e.tag_name === selectedValue)
+        return tagFound.tag_id
+    }
+    
     function RenderTags() {
-        setSelectedTag(selectedValue)
         return (
             <>
                 <Dropdown>
@@ -33,9 +42,10 @@ export function BaseDropDown({ defaultText, userTags, setSelectedTag }) {
             </>
         )
     }
+    
     return (
         <>
-            <RenderTags />
+            <RenderTags/>
         </>
     )
 }

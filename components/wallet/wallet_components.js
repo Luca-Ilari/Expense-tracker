@@ -73,11 +73,11 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                 </Table.Header>
                 <Table.Body>
                     {userTransactions.map(transaction => (
-                        <Table.Row>
-                            <Table.Cell>{transaction.amount}</Table.Cell>
-                            <Table.Cell>{transaction.date}</Table.Cell>
-                            <Table.Cell>{transaction.description}</Table.Cell>
-                            <Table.Cell><EditTransactionTagPicker transactionId={transaction.transaction_id} initialTag={transaction.tag_name} userTags={userTags}/></Table.Cell>
+                        <Table.Row key={transaction.transaction_id}>
+                            <Table.Cell key="amount">{transaction.amount}</Table.Cell>
+                            <Table.Cell key="date">{transaction.date}</Table.Cell>
+                            <Table.Cell key="description">{transaction.description}</Table.Cell>
+                            <Table.Cell key="tags"><EditTransactionTagPicker transactionId={transaction.transaction_id} initialTag={transaction.tag_name} initialTagId={transaction.tag_id} userTags={userTags}/></Table.Cell>
                         </Table.Row>
                         
                     ))}
