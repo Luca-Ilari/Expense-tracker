@@ -8,6 +8,13 @@ export function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
         [selected]
     )
 
+    useEffect(() => {
+        //console.log(selectedValue)
+        let selectedTag = findSelectedTagId()
+        setSelectedTagId(selectedTag)
+    }, [selectedValue])
+    
+
     function findSelectedTagId() {
         const tagFound = userTags.find(e => e.tag_name === selectedValue)
         return tagFound.tag_id
@@ -16,7 +23,7 @@ export function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
     function RenderTags() {
         return (
             <>
-                <Dropdown onclick={setSelectedTagId(findSelectedTagId())}>
+                <Dropdown>
                     <Dropdown.Button light css={{ tt: "capitalize" }}>
                         {selectedValue}
                     </Dropdown.Button>

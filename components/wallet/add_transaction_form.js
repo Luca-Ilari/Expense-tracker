@@ -35,13 +35,13 @@ export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
             <center>
                 <Grid.Container gap={2}>
                     <Grid>
-                        <Input ref={inputDate} type="date" id="date" required></Input>
+                        <Input ref={inputDate} type="date" aria-label="date" required></Input>
                     </Grid>
                     <Grid>
-                        <Input ref={inputAmount} type="number" id="amount" required></Input>
+                        <Input ref={inputAmount} type="number" aria-label="amount" required></Input>
                     </Grid>
                     <Grid>
-                        <Input ref={inputDesc} type="text" id="text" required></Input>
+                        <Input ref={inputDesc} type="text" aria-label="inputDesc" required></Input>
                     </Grid>
                     <Grid>
                        {// <NewTransactionTagPicker selectedTag={selectedTag} tagName={"tag"} userTags={userTags}/>

@@ -37,7 +37,9 @@ export default function Wallet({ walletId, userId }) {
     useEffect(() => {
         async function awaitUserGetTags() {
             const userTagsJson = await getUserTags(userId)
+            console.log("siummmm"+userTagsJson);
             setUserTags(deserialize(userTag, JSON.stringify(userTagsJson)))
+            console.log("user tag sium " + userTags);
         }
         awaitUserGetTags()
     }, [])
