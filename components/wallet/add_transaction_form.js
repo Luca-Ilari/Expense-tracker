@@ -1,11 +1,14 @@
 import { addTransaction } from "../../lib/api_query";
-import { Text, Input, Button, Grid } from "@nextui-org/react";
-import { useRef } from "react";
+import { Input, Button, Grid } from "@nextui-org/react";
+import { useRef, useState } from "react";
+import NewTransactionTagPicker from "./tag_dropdown/New_transaction_tag_picker";
 
 export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
     const inputDate = useRef(null)
     const inputAmount = useRef(0)
     const inputDesc = useRef("")
+    //const [ inputTag, setInputTag ] = useState("")
+    const [selectedTag, setSelectedTag] = useState()
 
     function checkRequired() {
         if (inputDate.current.value === "") {
@@ -18,6 +21,7 @@ export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
         }
     }
     function getInput() {
+        console.log(inputTag);
         if (checkRequired()) {
             console.log("yes");
             addTransaction(inputDate.current.value, inputAmount.current.value, inputDesc.current.value, walletId, 3)
@@ -31,32 +35,17 @@ export default function AddTransactionFrom({ setRefresh, walletId, userTags }) {
             <center>
                 <Grid.Container gap={2}>
                     <Grid>
-                        <Input ref={inputDate} type="date" id="date" required></Input>
+                        <Input ref={inputDate} type="date" aria-label="date" required></Input>
                     </Grid>
                     <Grid>
-                        <Input ref={inputAmount} type="number" id="amount" required></Input>
+                        <Input ref={inputAmount} type="number" aria-label="amount" required></Input>
                     </Grid>
                     <Grid>
-                        <Input ref={inputDesc} type="texr" id="text" required></Input>
+                        <Input ref={inputDesc} type="text" aria-label="inputDesc" required></Input>
                     </Grid>
                     <Grid>
-                        <Dropdown>
-                            <Dropdown.Button light css={{ tt: "capitalize" }}>
-                                {selectedValue}
-                            </Dropdown.Button>
-                            <Dropdown.Menu
-                                aria-label="Tag selection"
-                                color="secondary"
-                                disallowEmptySelection
-                                selectionMode="single"
-                                selectedKeys={selected}
-                                onSelectionChange={setSelected}
-                            >
-                                {userTags.map(tag => (
-                                    <Dropdown.Item key={tag.tag_name}>{tag.tag_name}</Dropdown.Item>
-                                ))}
-                            </Dropdown.Menu>
-                        </Dropdown>
+                       {// <NewTransactionTagPicker selectedTag={selectedTag} tagName={"tag"} userTags={userTags}/>
+                       }
                     </Grid>
                     <Grid>
                         <Button onPress={getInput}>Add</Button>

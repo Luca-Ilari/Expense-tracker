@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { getWallets } from "../lib/api_query";
 import Wallet from "./wallet";
-import { MainTitle } from "./main/main_components";
+import ConditionalMainTitle from "./main/main_components";
 import { Text, Loading, Grid, Container, Row, Col, Pagination} from "@nextui-org/react";
 
 function Main({ userId }) {
     const [canLoad, setCanLoad] = useState(false)
     const [page, setPage] = useState(1)
     const [walletsJson, setWalletsJson] = useState([])
-
 
     function changePage(e) {
         console.log(e);
@@ -29,7 +28,9 @@ function Main({ userId }) {
                 <Container justify="center" fluid responsive>
                     <Row>
                         <Col>
-                            <MainTitle text={"Your wallets"} />
+                        {
+                            <ConditionalMainTitle walletsNumber={Object.keys(walletsJson).length} />
+                        }
                         </Col>
                     </Row>
                     <Row>
