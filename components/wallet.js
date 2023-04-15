@@ -8,8 +8,8 @@ import AddTransactionFrom from './wallet/add_transaction_form';
 export default function Wallet({ walletId, userId }) {
     const [userTransactions, setUserTransactions] = useState([])
     const [refresh, setRefresh] = useState(false)
-    const [userTags, setUserTags] = useState([])
-
+    const [userTags, setUserTags] = useState(undefined)
+    
     class userTransaction {
         transaction_id = 0;
         date = "00/00/00";
@@ -21,8 +21,24 @@ export default function Wallet({ walletId, userId }) {
     }
 
     class userTag{
-        tag_id = 0;
-        tag_name= "";
+        constructor(tags) {
+            this.tag_id = Number(tags.tag_id);
+            this.tag_name = String(tags.tag_name);
+        }
+        getTagId(){
+            console.log(this.tag_id);
+            return this.tag_id;
+        }
+    }
+
+    async function populateUserTags(userTagsJson){         
+        let tempUserTags = new Array      
+        for (const i in userTagsJson) {
+            tempUserTags.push(new userTag(userTagsJson[i]))
+            console.log(i)
+        }
+        console.log("finis");
+        return tempUserTags
     }
 
     useEffect(() => {
@@ -37,40 +53,54 @@ export default function Wallet({ walletId, userId }) {
     useEffect(() => {
         async function awaitUserGetTags() {
             const userTagsJson = await getUserTags(userId)
-            console.log("siummmm"+userTagsJson);
-            setUserTags(deserialize(userTag, JSON.stringify(userTagsJson)))
+            console.log("json" + userTagsJson);
+            setUserTags(await populateUserTags(userTagsJson))
             console.log("user tag sium " + userTags);
+            // setUserTags(deserialize(userTag, JSON.stringify(userTagsJson)))
         }
         awaitUserGetTags()
+        console.log("useEffect user tag sium " + userTags);
     }, [])
+
+    function RenderWallet(){
+        if(userTags!=undefined){
+            return(
+                <>
+                    <Container justify="center" fluid responsive>
+                        <Row responsive>
+                            {/* Tablella transazioni */}
+                            <Col>
+                                <Text h2>Your transactions</Text>
+                                <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
+                            </Col>
+
+                            {/* GRAFICO */}
+                            <Col gap={4}>
+                                <Spacer y={5} />
+                                <TrendGraph userTransactions={userTransactions} />
+                                <center>
+                                    <Saldo userTransactions={userTransactions} />
+                                </center>
+                            </Col>
+                        </Row>
+
+                        {/* Form per aggiungere campo */}
+                        <Row>
+                            <Col>
+                            <AddTransactionFrom setRefresh={setRefresh} walletId={walletId} userTags={userTags}/>
+                            </Col>
+                        </Row>
+                    </Container>
+                </>
+            )
+        }else{
+            return(<><Text h2>Loading ...</Text></>)
+        }
+    }
 
     return (
         <>
-            <Container justify="center" fluid responsive>
-                <Row responsive>
-                    {/* Tablella transazioni */}
-                    <Col>
-                        <Text h2>Your transactions</Text>
-                        <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
-                    </Col>
-
-                    {/* GRAFICO */}
-                    <Col gap={4}>
-                        <Spacer y={5} />
-                        <TrendGraph userTransactions={userTransactions} />
-                        <center>
-                            <Saldo userTransactions={userTransactions} />
-                        </center>
-                    </Col>
-                </Row>
-
-                {/* Form per aggiungere campo */}
-                <Row>
-                    <Col>
-                    <AddTransactionFrom setRefresh={setRefresh} walletId={walletId} userTags={userTags}/>
-                    </Col>
-                </Row>
-            </Container>
+            <RenderWallet />
         </>
     )
 }

@@ -17,8 +17,8 @@ export default function EditTransactionTagPicker({ transactionId, initialTag, in
     }, [selectedTagId])
     
     console.log("userTags" + JSON.stringify(userTags))
+    
     return (
-        
         <BaseDropDown defaultText={initialTag} userTags={userTags} setSelectedTagId={setSelectedTagId} />
     )
 }
