@@ -9,7 +9,6 @@ export function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
     )
 
     useEffect(() => {
-        //console.log(selectedValue)
         let selectedTag = findSelectedTagId()
         setSelectedTagId(selectedTag)
     }, [selectedValue])

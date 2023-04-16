@@ -35,9 +35,7 @@ export default function Wallet({ walletId, userId }) {
         let tempUserTags = new Array      
         for (const i in userTagsJson) {
             tempUserTags.push(new userTag(userTagsJson[i]))
-            console.log(i)
         }
-        console.log("finis");
         return tempUserTags
     }
 
@@ -53,13 +51,9 @@ export default function Wallet({ walletId, userId }) {
     useEffect(() => {
         async function awaitUserGetTags() {
             const userTagsJson = await getUserTags(userId)
-            console.log("json" + userTagsJson);
             setUserTags(await populateUserTags(userTagsJson))
-            console.log("user tag sium " + userTags);
-            // setUserTags(deserialize(userTag, JSON.stringify(userTagsJson)))
         }
         awaitUserGetTags()
-        console.log("useEffect user tag sium " + userTags);
     }, [])
 
     function RenderWallet(){
