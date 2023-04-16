@@ -3,6 +3,7 @@ import { getWallets } from "../lib/api_query";
 import Wallet from "./wallet";
 import ConditionalMainTitle from "./main/main_components";
 import { Text, Loading, Grid, Container, Row, Col, Pagination} from "@nextui-org/react";
+import LoadingAnimation from "./general/loading_animation";
 
 function Main({ userId }) {
     const [canLoad, setCanLoad] = useState(false)
@@ -10,7 +11,6 @@ function Main({ userId }) {
     const [walletsJson, setWalletsJson] = useState([])
 
     function changePage(e) {
-        console.log(e);
         setPage(e)
     }
 
@@ -48,8 +48,7 @@ function Main({ userId }) {
                                 </div>
                             ) : (
                                 <Grid.Container justify="center">
-                                    <h2>Loading</h2>
-                                    <Loading size="lg" type="gradient" />
+                                    <LoadingAnimation/>
                                 </Grid.Container>
                             )}
                         </Col>

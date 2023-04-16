@@ -1,17 +1,14 @@
 import { BaseDropDown } from "./Base_dropdown"
 import { useEffect, useState } from "react"
-import { dbUpdateTransctionTag } from "../../../lib/api_query"
+import { changeTransactionTag } from "../../../lib/api_query"
 
-export default function EditTransactionTagPicker({ transactionId, initialTag, initialTagId, userTags }) {
-    const [selectedTagId, setSelectedTagId] = useState(initialTag)
+export default function EditTransactionTagDropdown({ transactionId, initialTag, initialTagId, userTags }) {
+    const [selectedTagId, setSelectedTagId] = useState(initialTagId)
 
     useEffect(() => {
-        async function updateTransctionTag() {
-            dbUpdateTransctionTag()
-        }
-
         if (selectedTagId != initialTagId) {
-            updateTransctionTag()
+            changeTransactionTag(transactionId, selectedTagId)
+            initialTagId = selectedTagId
             console.log("setting tag to " + selectedTagId + " transaction id " + transactionId);
         }
     }, [selectedTagId])
