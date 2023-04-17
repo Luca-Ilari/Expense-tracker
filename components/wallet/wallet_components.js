@@ -91,8 +91,8 @@ export function TransactionsTabel({ userTransactions, userTags }) {
         </>
     )
 }
-export function Saldo({ userTransactions }) {
-    function sumSaldo() {
+export function Balance({ userTransactions }) {
+    function sumBalance() {
         var x = 0
         userTransactions.map(transaction => (x = x + transaction.amount))
         return x
@@ -103,7 +103,7 @@ export function Saldo({ userTransactions }) {
             css={{
                 textGradient: "45deg, $yellow600 -20%, $red600 100%",
             }}
-            weight="bold">Saldo totale {sumSaldo()}€
+            weight="bold">Balance {sumBalance()}€
         </Text>
     )
 }

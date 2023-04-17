@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Row, Container, Col, Text, Spacer } from '@nextui-org/react';
-import { TrendGraph, Saldo, TransactionsTabel } from './wallet/wallet_components';
+import { TrendGraph, TransactionsTabel, Balance } from './wallet/wallet_components';
 import { tryGetTransactions, getUserTags } from "../lib/api_query";
 import { deserialize } from 'class-transformer';
 import AddTransactionFrom from './wallet/add_transaction_form';
@@ -74,7 +74,7 @@ export default function Wallet({ walletId, userId }) {
                                 <Spacer y={5} />
                                 <TrendGraph userTransactions={userTransactions} />
                                 <center>
-                                    <Saldo userTransactions={userTransactions} />
+                                    <Balance userTransactions={userTransactions} />
                                 </center>
                             </Col>
                         </Row>
