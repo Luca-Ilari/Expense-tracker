@@ -64,7 +64,7 @@ export default function Wallet({ walletId, userId }) {
     }, [])
 
     function RenderWallet() {
-        if (userTags != undefined) {
+        if (userTags != undefined ) {
             return (
                 <>
                     <Container justify="center" fluid responsive>

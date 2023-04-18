@@ -16,7 +16,11 @@ export function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
 
     function findSelectedTagId() {
         const tagFound = userTags.find(e => e.tag_name === selectedValue)
-        return tagFound.tag_id
+        if (tagFound===undefined) {
+            return Number(0)
+        }else{
+            return tagFound.tag_id
+        }
     }
     
     function RenderTags() {
