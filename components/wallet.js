@@ -11,14 +11,16 @@ export default function Wallet({ walletId, userId }) {
     const [reloadTransaction, setReloadTransaction] = useState(false)
     const [userTags, setUserTags] = useState(undefined)
 
-    class userTransaction {
-        transaction_id = 0;
-        date = "00/00/00";
-        amount = 0;
-        description = "";
-        wallet_id = "";
-        tag = "";
-        tag_name = "";
+    class transaction {
+        constructor(jsonTransaction) {
+            this.transaction_id = Number(jsonTransaction.transaction_id);
+            this.date = String(jsonTransaction.date);
+            this.amount = Number(jsonTransaction.amount);
+            this.description = String(jsonTransaction.description);
+            this.wallet_id = Number(jsonTransaction.wallet_id);
+            this.tag_id = Number(jsonTransaction.tag_id);
+            this.tag_name = String(jsonTransaction.tag_name);
+        }
     }
 
     class userTag {
@@ -26,10 +28,14 @@ export default function Wallet({ walletId, userId }) {
             this.tag_id = Number(tags.tag_id);
             this.tag_name = String(tags.tag_name);
         }
-        getTagId() {
-            console.log(this.tag_id);
-            return this.tag_id;
+    }
+
+    async function populateUserTransactions(transactionsJson) {
+        let tempUserTransactions = new Array
+        for (const i in transactionsJson) {
+            tempUserTransactions.push(new transaction(transactionsJson[i]))
         }
+        return tempUserTransactions
     }
 
     async function populateUserTags(userTagsJson) {
@@ -43,7 +49,7 @@ export default function Wallet({ walletId, userId }) {
     useEffect(() => {
         async function awaitGetTransactions() {
             const transactionsJson = await tryGetTransactions(walletId);
-            setUserTransactions(deserialize(userTransaction, JSON.stringify(transactionsJson)))
+            setUserTransactions(await populateUserTransactions(transactionsJson))
             setReloadTransaction(false)
         }
         awaitGetTransactions();
