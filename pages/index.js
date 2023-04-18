@@ -3,7 +3,9 @@ import Login from "../components/login"
 import Main from "../components/main"
 
 /*  TO-DO
-add transactions
+Date format
+glitchy page refrash when transaction is added
+add transactions must check if all fields are filled
 Tag name MUST BE DIFFERENT when created
 Password encryption
 */
