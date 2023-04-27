@@ -1,15 +1,16 @@
 import { addTransaction } from "../../lib/api_query";
-import { Input, Button, Grid } from "@nextui-org/react";
-import { cloneElement, useRef, useState } from "react";
+import { Text, Button, Grid } from "@nextui-org/react";
+import { useRef, useState } from "react";
 import { BaseDropDown } from "./tag_dropdown/Base_dropdown";
 import Field from "./Field";
+import Alert from "../general/Alert";
 
 export default function AddTransactionFrom({ setReloadTransaction, walletId, userTags }) {
-    const inputDate = useRef(null)
-    const inputAmount = useRef(0)
-    const inputDesc = useRef("")
+    const [inputDate, setInputDate] = useState(null)
+    const [inputAmount, setInputAmount] = useState(0)
+    const [inputDesc, setInputDesc] = useState("")
     const [selectedTagId, setSelectedTagId] = useState(null)
-    const [requiredField, setRequiredField] = useState(false)
+    const [showRequiredFieldAlert, setShowRequiredFieldAlert] = useState(false)
     const [values, setValues] = useState([])
     const parentRef = useRef()
 
@@ -39,8 +40,7 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
     function checkRequired() {
         let valid = true
         
-        // verificare che parentRef.current.childNodes.length sia uguale alla lunghezza array
-        if(parentRef.current.childNodes.length !== values.length){
+        if (parentRef.current.childNodes.length !== values.length) {
             valid = false
         }
         values.forEach((fieldData) => {
@@ -48,20 +48,21 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
                 valid = false
             }
         })
-        console.log("valid " + valid);
-
+        if (selectedTagId === 0){
+            valid = false
+        }
         return valid
     }
 
     function getInput() {
         if (checkRequired()) {
-            console.log(checkRequired());
+            console.log(checkRequired())
             console.log(parentRef.current.childNodes.length)
-            setRequiredField(true)
-            addTransaction(inputDate.current.value, inputAmount.current.value, inputDesc.current.value, walletId, selectedTagId)
+            setShowRequiredFieldAlert(false)
+            addTransaction(inputDate, inputAmount, inputDesc, walletId, selectedTagId)
             setReloadTransaction(true)
         } else {
-            setRequiredField(true)
+            setShowRequiredFieldAlert(true)
 
         }
     }
@@ -70,18 +71,12 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
         <>
             <center>
                 <Grid.Container gap={2}>
-                    <Grid ref={parentRef}>
-                        <Field type="text" id="1" insertValues={insertValues} undesiredInput="" />
-                        <Field type="text" id="2" insertValues={insertValues} undesiredInput="" />
-                    </Grid>
                     <Grid>
-                        <Input ref={inputDate} type="date" aria-label="date" required></Input>
-                    </Grid>
-                    <Grid>
-                        <Input ref={inputAmount} type="number" aria-label="amount" required></Input>
-                    </Grid>
-                    <Grid>
-                        <Input ref={inputDesc} type="text" aria-label="inputDesc" required></Input>
+                        <div ref={parentRef}>
+                            <Field setFieldInput={setInputDate} type="date" id="2" insertValues={insertValues} undesiredInput="" />
+                            <Field setFieldInput={setInputAmount} type="number" id="3" insertValues={insertValues} undesiredInput="" />
+                            <Field setFieldInput={setInputDesc} type="text" id="4" insertValues={insertValues} undesiredInput="" />
+                        </div>
                     </Grid>
                     <Grid>
                         <BaseDropDown
@@ -92,19 +87,12 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
                     </Grid>
                     <Grid>
                         <Button onPress={getInput}>Add</Button>
-                        <Button onPress={() => { console.log(JSON.stringify(values)) }}></Button>
                     </Grid>
                     <Grid>
-                        {requiredField ? (
-                            <div>
-                                <Text p>All fields are required</Text>
-                            </div>
-                        ) : (
-                            <div>
-                            </div>
-                        )}
+                        <div>
+                            <Alert show={showRequiredFieldAlert} message={"All fields are required!"} />
+                        </div>
                     </Grid>
-
                 </Grid.Container>
             </center>
         </>

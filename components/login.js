@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react"
-import Alert from "../components/login/alert";
+import Alert from "./general/Alert";
 import { getUserId } from "../lib/api_query";
 import { Button, Input, Container, Row, Col, Spacer, Text } from "@nextui-org/react";
 import { Mail } from "./login/mail";

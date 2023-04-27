@@ -1,11 +1,12 @@
 import { Input } from "@nextui-org/react";
 import { useRef, useEffect } from "react";
 
-export default function Field({ type, id, insertValues, undesiredInput }) {
+export default function Field({ type, id, setFieldInput, insertValues, undesiredInput }) {
     const value = useRef()
 
     function checkValidity() {
         if (value.current.value !== undesiredInput) {
+            setFieldInput(value.current.value)
             insertValues(id, true)
         } else {
             insertValues(id, false)
@@ -14,5 +15,6 @@ export default function Field({ type, id, insertValues, undesiredInput }) {
 
     return (
         <Input ref={value} type={type} aria-label={type} onChange={checkValidity}></Input>
+       
     )
 }
