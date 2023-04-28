@@ -64,11 +64,11 @@ export default function Wallet({ walletId, userId }) {
     }, [])
 
     function RenderWallet() {
-        if (userTags != undefined ) {
+        if (userTags != undefined) {
             return (
                 <>
                     <Container justify="center" fluid responsive>
-                        <Row>
+                        <Row gap={2} >
                             {/* Tablella transazioni */}
                             <Col>
                                 <Text h2>Your transactions</Text>

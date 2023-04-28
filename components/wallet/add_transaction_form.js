@@ -39,7 +39,7 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
 
     function checkRequired() {
         let valid = true
-        
+
         if (parentRef.current.childNodes.length !== values.length) {
             valid = false
         }
@@ -48,7 +48,7 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
                 valid = false
             }
         })
-        if (selectedTagId === 0){
+        if (selectedTagId === 0) {
             valid = false
         }
         return valid
@@ -56,8 +56,6 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
 
     function getInput() {
         if (checkRequired()) {
-            console.log(checkRequired())
-            console.log(parentRef.current.childNodes.length)
             setShowRequiredFieldAlert(false)
             addTransaction(inputDate, inputAmount, inputDesc, walletId, selectedTagId)
             setReloadTransaction(true)
@@ -77,13 +75,13 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
                             <Field setFieldInput={setInputAmount} type="number" id="3" insertValues={insertValues} undesiredInput="" />
                             <Field setFieldInput={setInputDesc} type="text" id="4" insertValues={insertValues} undesiredInput="" />
                         </div>
-                    </Grid>
-                    <Grid>
-                        <BaseDropDown
-                            defaultText={""}
-                            userTags={userTags}
-                            setSelectedTagId={setSelectedTagId}
-                        />
+                        <div>
+                            <BaseDropDown
+                                defaultText={""}
+                                userTags={userTags}
+                                setSelectedTagId={setSelectedTagId}
+                            />
+                        </div>
                     </Grid>
                     <Grid>
                         <Button onPress={getInput}>Add</Button>

@@ -29,20 +29,24 @@ export function TrendGraph({ userTransactions }) {
         labels: userTransactions.map(transaction => (transaction.date)),
         datasets: [{
             label: 'Summary',
-            lineTension: 0.2,
             data: userTransactions.map(transaction => (
                 summary = summary + transaction.amount))
         }],
     };
     const options = {
         plugins: {
+            tooltip: {
+                intersect: false,
+                position: 'nearest',
+                backgroundColor: 'rgba(0, 0, 0, 0.0)',
+            },
             legend: {
                 display: true,
             },
         },
         elements: {
             line: {
-                tension: 0.1,
+                spanGaps: true,
                 borderWidth: 2,
                 borderColor: "rgba(11, 131, 165, 1)",
                 fill: "start",
@@ -77,8 +81,8 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                             <Table.Cell key="amount">{transaction.amount}</Table.Cell>
                             <Table.Cell key="date">{transaction.date}</Table.Cell>
                             <Table.Cell key="description">{transaction.description}</Table.Cell>
-                            <Table.Cell key="tags"><EditTransactionTagDropdown transactionId={transaction.transaction_id} initialTag={transaction.tag_name} initialTagId={transaction.tag_id} userTags={userTags}/></Table.Cell>
-                        </Table.Row> 
+                            <Table.Cell key="tags"><EditTransactionTagDropdown transactionId={transaction.transaction_id} initialTag={transaction.tag_name} initialTagId={transaction.tag_id} userTags={userTags} /></Table.Cell>
+                        </Table.Row>
                     ))}
                 </Table.Body>
                 <Table.Pagination
