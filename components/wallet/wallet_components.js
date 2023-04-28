@@ -30,11 +30,17 @@ export function TrendGraph({ userTransactions }) {
         datasets: [{
             label: 'Summary',
             data: userTransactions.map(transaction => (
-                summary = summary + transaction.amount))
+                summary = summary + transaction.amount)
+            ),
+
         }],
     };
     const options = {
         plugins: {
+            title: {
+                display: true,
+                text: "Your balance over time"
+            },
             tooltip: {
                 intersect: false,
                 position: 'nearest',
