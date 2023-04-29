@@ -56,13 +56,13 @@ function Main({ userId }) {
                     </Row>
                 </Container>
                 <Menu
-                    theme={theme}
-                    onClick={onClick}
+                   
+                
                     style={{ width: 256 }}
                     defaultOpenKeys={['sub1']}
-                    selectedKeys={[current]}
+            
                     mode="inline"
-                    items={items}
+          
                 />
             </>
         )

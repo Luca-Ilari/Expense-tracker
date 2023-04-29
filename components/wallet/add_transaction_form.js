@@ -1,5 +1,6 @@
 import { addTransaction } from "../../lib/api_query";
 import { Text, Button, Grid } from "@nextui-org/react";
+import { Select } from "antd";
 import { useRef, useState } from "react";
 import { BaseDropDown } from "./tag_dropdown/Base_dropdown";
 import Field from "./Field";
@@ -62,6 +63,7 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
         }
     }
 
+
     return (
         <>
             <center>
@@ -73,6 +75,7 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
                             <Field setFieldInput={setInputDesc} type="text" id="4" insertValues={insertValues} undesiredInput="" />
                         </div>
                         <div>
+                            
                             <BaseDropDown
                                 defaultText={""}
                                 userTags={userTags}
