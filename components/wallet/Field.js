@@ -15,6 +15,5 @@ export default function Field({ type, id, setFieldInput, insertValues, undesired
 
     return (
         <Input ref={value} type={type} aria-label={type} onChange={checkValidity}></Input>
-       
     )
 }

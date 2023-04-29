@@ -14,8 +14,6 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
     const [values, setValues] = useState([])
     const parentRef = useRef()
 
-
-
     function insertValues(id, value) {
         const found = values.find(fieldData => fieldData.id === id)
         if (found) {
@@ -61,7 +59,6 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
             setReloadTransaction(true)
         } else {
             setShowRequiredFieldAlert(true)
-
         }
     }
 

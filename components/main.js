@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { getWallets } from "../lib/api_query";
 import Wallet from "./wallet";
 import ConditionalMainTitle from "./main/main_components";
-import { Text, Loading, Grid, Container, Row, Col, Pagination} from "@nextui-org/react";
+import { Menu } from "antd";
+import { Text, Loading, Grid, Container, Row, Col, Pagination } from "@nextui-org/react";
 import LoadingAnimation from "./general/loading_animation";
 
 function Main({ userId }) {
@@ -28,9 +29,9 @@ function Main({ userId }) {
                 <Container justify="center" fluid responsive>
                     <Row>
                         <Col>
-                        {
-                            <ConditionalMainTitle walletsNumber={Object.keys(walletsJson).length} />
-                        }
+                            {
+                                <ConditionalMainTitle walletsNumber={Object.keys(walletsJson).length} />
+                            }
                         </Col>
                     </Row>
                     <Row>
@@ -48,12 +49,21 @@ function Main({ userId }) {
                                 </div>
                             ) : (
                                 <Grid.Container justify="center">
-                                    <LoadingAnimation/>
+                                    <LoadingAnimation />
                                 </Grid.Container>
                             )}
                         </Col>
                     </Row>
                 </Container>
+                <Menu
+                    theme={theme}
+                    onClick={onClick}
+                    style={{ width: 256 }}
+                    defaultOpenKeys={['sub1']}
+                    selectedKeys={[current]}
+                    mode="inline"
+                    items={items}
+                />
             </>
         )
     }
