@@ -1,5 +1,5 @@
 import { Spacer, Text } from "@nextui-org/react";
-export default function Alert({show, message}){
+function Alert({show, message}){
     function renderAlert() {
         if (show) {
             return(
@@ -18,3 +18,4 @@ export default function Alert({show, message}){
 
     return renderAlert();
 }
+export default Alert

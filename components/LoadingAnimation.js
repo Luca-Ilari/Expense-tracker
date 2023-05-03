@@ -1,6 +1,6 @@
 import { Loading, Text } from "@nextui-org/react"
 
-export default function LoadingAnimation() {
+function LoadingAnimation() {
     return (
         <>
             <Text h2>Loading</Text>
@@ -8,3 +8,4 @@ export default function LoadingAnimation() {
         </>
     )
 }
+export default LoadingAnimation

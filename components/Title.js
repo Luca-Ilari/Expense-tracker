@@ -1,6 +1,6 @@
 import { Text } from '@nextui-org/react';
 
-export default function Title({ content }) {
+function Title({ content }) {
 
     return (
         <Text
@@ -11,3 +11,5 @@ export default function Title({ content }) {
             weight="bold">{content}</Text>
     )
 }
+
+export default Title

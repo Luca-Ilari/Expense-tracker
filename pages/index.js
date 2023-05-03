@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Login from "../components/login"
-import Main from "../components/main"
+import HomePage from '../components/HomePage';
+import Login from '../components/Login';
 
 /*  TO-DO
 Date format of transaction to dd-mm-yyyy 
@@ -9,23 +9,27 @@ Tag name MUST BE DIFFERENT when created
 Password encryption
 */
 
-function HomePage() {
+function Index() {
     const [userName, setUserName] = useState();
-    const [userId, setUserId] = useState(2);
+    const [userId, setUserId] = useState();
 
     function renderIndex() {
-        if (userName) { 
-            return(
-            <>
-                <Main userId={userId}/>
-            </>
+        if (userName) {
+            return (
+                <>
+                    <HomePage userId={userId} />
+                </>
             )
         }
         else {
-            return <Login setUserName={setUserName} setUserId={setUserId}/>
+            return (
+                <>
+                    <Login setUserName={setUserName} setUserId={setUserId} />
+                </>
+            )
         }
     }
-    
+
     return renderIndex();
 }
-export default HomePage
+export default Index

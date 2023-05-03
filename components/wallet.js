@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Row, Container, Col, Text, Spacer } from '@nextui-org/react';
-import { TrendGraph } from './trendGraph';
 import { TransactionsTabel, Balance } from './walletComponents';
 import { tryGetTransactions, getUserTags } from "../lib/apiQuery";
+import TrendGraph from './trendGraph';
 import AddTransactionForm from './addTransactionForm';
 import LoadingAnimation from './LoadingAnimation';
 
-export default function Wallet({ walletId, userId }) {
+function Wallet({ walletId, userId }) {
     const [userTransactions, setUserTransactions] = useState([])
     const [reloadTransaction, setReloadTransaction] = useState(false)
     const [userTags, setUserTags] = useState(undefined)
@@ -109,3 +109,5 @@ export default function Wallet({ walletId, userId }) {
         </>
     )
 }
+
+export default Wallet

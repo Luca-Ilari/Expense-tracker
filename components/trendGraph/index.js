@@ -20,7 +20,7 @@ ChartJS.register(
     Legend
 )
 
-export function TrendGraph({ userTransactions }) {
+function TrendGraph({ userTransactions }) {
     var summary = 0;
     const data = {
         labels: userTransactions.map(transaction => (transaction.date)),
@@ -61,3 +61,4 @@ export function TrendGraph({ userTransactions }) {
         <Line data={data} options={options} />
     )
 }
+export default TrendGraph

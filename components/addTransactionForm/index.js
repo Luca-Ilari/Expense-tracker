@@ -1,10 +1,9 @@
 import { addTransaction } from "../../lib/apiQuery";
-import { Text, Button, Grid } from "@nextui-org/react";
-
+import { Button, Grid } from "@nextui-org/react";
 import { useRef, useState } from "react";
 import { BaseDropDown } from "../TagDropdown";
 import Field from "./Field";
-import Alert from "../alert";
+import Alert from "../Alert";
 
 export default function AddTransactionForm({ setReloadTransaction, walletId, userTags }) {
     const [inputDate, setInputDate] = useState(null)

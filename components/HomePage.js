@@ -5,7 +5,7 @@ import { Text, Grid, Container, Row, Col, Pagination } from "@nextui-org/react";
 import LoadingAnimation from "./LoadingAnimation";
 import Title from "./Title";
 
-function Main({ userId }) {
+function HomePage({ userId }) {
     const [canLoad, setCanLoad] = useState(false)
     const [page, setPage] = useState(1)
     const [walletsJson, setWalletsJson] = useState([])
@@ -65,4 +65,4 @@ function Main({ userId }) {
     )
 }
 
-export default Main
+export default HomePage
