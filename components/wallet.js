@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Row, Container, Col, Text, Spacer } from '@nextui-org/react';
-import { TrendGraph, TransactionsTabel, Balance } from './wallet/wallet_components';
-import { tryGetTransactions, getUserTags } from "../lib/api_query";
-import { deserialize } from 'class-transformer';
-import AddTransactionFrom from './wallet/add_transaction_form';
-import LoadingAnimation from './general/loading_animation';
+import { TrendGraph } from './trendGraph';
+import { TransactionsTabel, Balance } from './walletComponents';
+import { tryGetTransactions, getUserTags } from "../lib/apiQuery";
+import AddTransactionForm from './addTransactionForm';
+import LoadingAnimation from './LoadingAnimation';
 
 export default function Wallet({ walletId, userId }) {
     const [userTransactions, setUserTransactions] = useState([])
@@ -88,7 +88,7 @@ export default function Wallet({ walletId, userId }) {
                         {/* Form per aggiungere campo */}
                         <Row>
                             <Col>
-                                <AddTransactionFrom setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
+                                <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
                             </Col>
                         </Row>
                     </Container>

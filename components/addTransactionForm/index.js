@@ -1,12 +1,12 @@
-import { addTransaction } from "../../lib/api_query";
+import { addTransaction } from "../../lib/apiQuery";
 import { Text, Button, Grid } from "@nextui-org/react";
-import { Select } from "antd";
-import { useRef, useState } from "react";
-import { BaseDropDown } from "./tag_dropdown/Base_dropdown";
-import Field from "./Field";
-import Alert from "../general/Alert";
 
-export default function AddTransactionFrom({ setReloadTransaction, walletId, userTags }) {
+import { useRef, useState } from "react";
+import { BaseDropDown } from "../TagDropdown";
+import Field from "./Field";
+import Alert from "../alert";
+
+export default function AddTransactionForm({ setReloadTransaction, walletId, userTags }) {
     const [inputDate, setInputDate] = useState(null)
     const [inputAmount, setInputAmount] = useState(0)
     const [inputDesc, setInputDesc] = useState("")
@@ -70,9 +70,9 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
                 <Grid.Container gap={2}>
                     <Grid>
                         <div ref={parentRef}>
-                            <Field setFieldInput={setInputDate} type="date" id="2" insertValues={insertValues} undesiredInput="" />
-                            <Field setFieldInput={setInputAmount} type="number" id="3" insertValues={insertValues} undesiredInput="" />
-                            <Field setFieldInput={setInputDesc} type="text" id="4" insertValues={insertValues} undesiredInput="" />
+                            <Field setFieldInput={setInputDate} type="date" id="1" insertValues={insertValues} undesiredInput="" />
+                            <Field setFieldInput={setInputAmount} type="number" id="2" insertValues={insertValues} undesiredInput="" />
+                            <Field setFieldInput={setInputDesc} type="text" id="3" insertValues={insertValues} undesiredInput="" />
                         </div>
                         <div>
                             

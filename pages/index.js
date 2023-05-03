@@ -3,9 +3,8 @@ import Login from "../components/login"
 import Main from "../components/main"
 
 /*  TO-DO
-Date format
-glitchy page refrash when transaction is added
-add transactions must check if all fields are filled
+Date format of transaction to dd-mm-yyyy 
+glitchy page refresh when transaction is added
 Tag name MUST BE DIFFERENT when created
 Password encryption
 */

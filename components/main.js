@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { getWallets } from "../lib/api_query";
-import Wallet from "./wallet";
-import ConditionalMainTitle from "./main/main_components";
-import { Menu } from "antd";
-import { Text, Loading, Grid, Container, Row, Col, Pagination } from "@nextui-org/react";
-import LoadingAnimation from "./general/loading_animation";
+import { getWallets } from "../lib/apiQuery";
+import Wallet from "./Wallet"
+import { Text, Grid, Container, Row, Col, Pagination } from "@nextui-org/react";
+import LoadingAnimation from "./LoadingAnimation";
+import Title from "./Title";
 
 function Main({ userId }) {
     const [canLoad, setCanLoad] = useState(false)
@@ -29,9 +28,11 @@ function Main({ userId }) {
                 <Container justify="center" fluid responsive>
                     <Row>
                         <Col>
-                            {
-                                <ConditionalMainTitle walletsNumber={Object.keys(walletsJson).length} />
-                            }
+                            {Object.keys(walletsJson).length > 1 ? (
+                                <Title content="Your wallets"/>
+                            ) : (
+                                <Title content="Your wallet"/>
+                            )}
                         </Col>
                     </Row>
                     <Row>
@@ -55,15 +56,7 @@ function Main({ userId }) {
                         </Col>
                     </Row>
                 </Container>
-                <Menu
-                   
-                
-                    style={{ width: 256 }}
-                    defaultOpenKeys={['sub1']}
-            
-                    mode="inline"
-          
-                />
+
             </>
         )
     }

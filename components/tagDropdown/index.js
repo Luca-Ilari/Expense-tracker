@@ -1,6 +1,4 @@
-import { Dropdown } from '@nextui-org/react';
 import { Select } from 'antd';
-import { useMemo, useState, useEffect } from 'react';
 
 export function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
     const onChange = (value) => {
@@ -13,7 +11,7 @@ export function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
             <>
                 <Select
                     showSearch
-                  defaultValue={defaultText}
+                    defaultValue={defaultText}
                     onChange={onChange}
                     filterOption={(input, option) =>
                         (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
