@@ -1,14 +1,16 @@
 import { Text } from '@nextui-org/react';
+import { Typography } from 'antd';
 
 function Title({ content }) {
-
     return (
-        <Text
-            h1
-            css={{
-                textGradient: "45deg, $blue600 -20%, $pink600 50%",
+        <Typography.Title
+            level={2}
+            style={{
+                margin: 0,
             }}
-            weight="bold">{content}</Text>
+        >
+            {content}
+        </Typography.Title>
     )
 }
 

@@ -1,8 +1,7 @@
 import { Select } from 'antd';
 
-export function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
+function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
     const onChange = (value) => {
-        console.log("sss  " + JSON.stringify(userTags));
         setSelectedTagId(value)
     };
 
@@ -10,26 +9,21 @@ export function BaseDropDown({ defaultText, userTags, setSelectedTagId }) {
         return (
             <>
                 <Select
-                    showSearch
                     defaultValue={defaultText}
                     onChange={onChange}
-                    filterOption={(input, option) =>
-                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                    }
                     options={userTags.map(tag => (
                         {
                             value: tag.tag_id,
                             label: tag.tag_name,
                         }
                     ))}
+                    style={{ width: 100 }}
                 />
             </>
         )
     }
 
-    return (
-        <>
-            <RenderTags />
-        </>
-    )
+    return RenderTags();
 }
+
+export default BaseDropDown;

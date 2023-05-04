@@ -34,10 +34,6 @@ function TrendGraph({ userTransactions }) {
     };
     const options = {
         plugins: {
-            title: {
-                display: true,
-                text: "Your balance over time"
-            },
             tooltip: {
                 intersect: false,
                 position: 'nearest',

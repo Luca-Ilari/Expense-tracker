@@ -2,21 +2,17 @@ import { useState, useEffect } from "react";
 import { getWallets } from "../lib/apiQuery";
 import Wallet from "./Wallet"
 import { Text, Grid, Container, Row, Col, Pagination } from "@nextui-org/react";
+import { Tabs } from "antd";
 import LoadingAnimation from "./LoadingAnimation";
 import Title from "./Title";
 
 function HomePage({ userId }) {
     const [canLoad, setCanLoad] = useState(false)
-    const [page, setPage] = useState(1)
-    const [walletsJson, setWalletsJson] = useState([])
-
-    function changePage(e) {
-        setPage(e)
-    }
+    const [userWalletsJson, setUserWalletsJson] = useState([])
 
     useEffect(() => {
         async function awaitGetWallets() {
-            setWalletsJson(await getWallets(userId))
+            setUserWalletsJson(await getWallets(userId))
             setCanLoad(true)
         }
         awaitGetWallets();
@@ -28,10 +24,10 @@ function HomePage({ userId }) {
                 <Container justify="center" fluid responsive>
                     <Row>
                         <Col>
-                            {Object.keys(walletsJson).length > 1 ? (
-                                <Title content="Your wallets"/>
+                            {Object.keys(userWalletsJson).length > 1 ? (
+                                <Title content="Your wallets" />
                             ) : (
-                                <Title content="Your wallet"/>
+                                <Title content="Your wallet" />
                             )}
                         </Col>
                     </Row>
@@ -39,14 +35,17 @@ function HomePage({ userId }) {
                         <Col>
                             {canLoad ? (
                                 <div>
-                                    <Pagination
-                                        total={walletsJson.length}
-                                        initialPage={1}
-                                        page={page}
-                                        onChange={changePage}
+                                    <Tabs
+                                        defaultActiveKey="1"
+                                        items={userWalletsJson.map((key, value) => (
+                                            {
+                                                key: value,
+                                                label: key.wallet_name,
+                                                children: (<Wallet walletId={key.wallet_id} userId={userId} />),
+                                                closable: false,
+                                            }
+                                        ))}
                                     />
-                                    <Text h4 justify="center">{walletsJson[page - 1].wallet_name}</Text>
-                                    <Wallet walletId={walletsJson[page - 1].wallet_id} userId={userId} />
                                 </div>
                             ) : (
                                 <Grid.Container justify="center">
@@ -56,7 +55,6 @@ function HomePage({ userId }) {
                         </Col>
                     </Row>
                 </Container>
-
             </>
         )
     }

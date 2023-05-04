@@ -1,16 +1,11 @@
 import { Spacer, Text } from "@nextui-org/react";
-function Alert({show, message}){
+import { Alert } from "antd";
+
+function Warning({ show, message }) {
     function renderAlert() {
         if (show) {
-            return(
-                <>
-                    <div>
-                        <Spacer y={0.5}/>
-                        <Text h5>
-                            { message }
-                        </Text>
-                    </div>
-                </>
+            return (
+                <Alert message={message} type="warning" showIcon closable />
             )
         }
         else { return <></> }
@@ -18,4 +13,4 @@ function Alert({show, message}){
 
     return renderAlert();
 }
-export default Alert
+export default Warning

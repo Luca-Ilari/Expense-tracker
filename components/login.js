@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { getUserId } from "../lib/apiQuery";
-import { Button, Form, Input } from 'antd';
-import Alert from "./Alert";
+import { Button, Form, Input, Space } from 'antd';
+import Warning from "./Alert";
+import Title from "./Title";
 
 function Login({ setUserName, setUserId }) {
     const [showLoginAlert, setShowLoginAlert] = useState(false)
 
     async function postLogin(username, password) {
-        console.log(username + password);
         const response = await getUserId(username, password)
         if (response) {
             setUserId(response)
@@ -29,6 +29,8 @@ function Login({ setUserName, setUserId }) {
         return (
             <>
                 <center>
+                    <Title content="Login" />
+                    <br />
                     <Form
                         name="normal_login"
                         className="login-form"
@@ -38,6 +40,9 @@ function Login({ setUserName, setUserId }) {
                         onFinish={onFinish}
                         onFinishFailed={onFinishFailed}
                         autoComplete="off"
+                        style={{
+                            maxWidth: 400,
+                        }}
                     >
                         <Form.Item
                             label="Username"
@@ -47,11 +52,11 @@ function Login({ setUserName, setUserId }) {
                                     required: true,
                                     message: 'Please input your username!',
                                 },
-                            ]}>
+                            ]}
+                        >
                             <Input />
-
-
                         </Form.Item>
+
                         <Form.Item
                             label="Password"
                             name="password"
@@ -64,20 +69,16 @@ function Login({ setUserName, setUserId }) {
                         >
                             <Input.Password />
                         </Form.Item>
-                        <Form.Item
-                            wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                            }}
-                        >
+
+                        <Form.Item>
                             <Button type="primary" htmlType="submit">
                                 Submit
                             </Button>
                         </Form.Item>
-                    </Form >
                     <div>
-                        <Alert show={showLoginAlert} message='Incorrect password or username' />
+                        <Warning show={showLoginAlert} message='Incorrect password or username' />
                     </div>
+                    </Form>
                 </center>
             </>
         )

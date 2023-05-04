@@ -1,6 +1,7 @@
 import { Text, Table } from '@nextui-org/react';
-import EditTransactionTagDropdown from './editTransactionTag';
-
+import { Statistic } from 'antd';
+import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
+import EditTransactionTagDropdown from './editTransactionTag/index';
 
 export function TransactionsTabel({ userTransactions, userTags }) {
     return (
@@ -22,7 +23,33 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                 <Table.Body>
                     {userTransactions.map(transaction => (
                         <Table.Row key={transaction.transaction_id}>
-                            <Table.Cell key="amount">{transaction.amount}</Table.Cell>
+                            {transaction.amount > 0 ? (
+                                <Table.Cell key="amount">
+                                    <Statistic
+                                        value={transaction.amount}
+                                        precision={2}
+                                        valueStyle={{
+                                            color: '#3f8600',
+                                            fontSize: '15px',
+                                        }}
+                                        prefix={<ArrowUpOutlined />}
+                                        suffix="€"
+                                    />
+                                </Table.Cell>
+                            ) : (
+                                <Table.Cell key="amount">
+                                    <Statistic
+                                        value={transaction.amount}
+                                        precision={2}
+                                        valueStyle={{
+                                            fontSize: '15px',
+                                            color: '#cf1322',
+                                        }}
+                                        prefix={<ArrowDownOutlined />}
+                                        suffix="€"
+                                    />
+                                </Table.Cell>
+                            )}
                             <Table.Cell key="date">{transaction.date}</Table.Cell>
                             <Table.Cell key="description">{transaction.description}</Table.Cell>
                             <Table.Cell key="tags"><EditTransactionTagDropdown transactionId={transaction.transaction_id} initialTag={transaction.tag_name} initialTagId={transaction.tag_id} userTags={userTags} /></Table.Cell>

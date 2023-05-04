@@ -1,6 +1,6 @@
-import { BaseDropDown } from "../TagDropdown"
-import { useEffect, useState } from "react"
+import BaseDropDown from "../DropDown"
 import { changeTransactionTag } from "../../lib/apiQuery"
+import { useEffect, useState } from "react"
 
 function EditTransactionTagDropdown({ transactionId, initialTag, initialTagId, userTags }) {
     const [currentTagId, setCurrentTagId] = useState(initialTagId)
