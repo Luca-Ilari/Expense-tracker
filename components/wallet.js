@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Row, Container, Col, Text, Spacer } from '@nextui-org/react';
-import { TrendGraph, TransactionsTabel, Balance } from './wallet/wallet_components';
-import { tryGetTransactions, getUserTags } from "../lib/api_query";
-import { deserialize } from 'class-transformer';
-import AddTransactionFrom from './wallet/add_transaction_form';
-import LoadingAnimation from './general/loading_animation';
+import { Container, Text } from '@nextui-org/react';
+import { Col, Row } from 'antd';
+import { TransactionsTabel, Balance } from './walletComponents';
+import { tryGetTransactions, getUserTags } from "../lib/apiQuery";
+import TrendGraph from './trendGraph';
+import AddTransactionForm from './addTransactionForm';
+import LoadingAnimation from './LoadingAnimation';
 
-export default function Wallet({ walletId, userId }) {
+function Wallet({ walletId, userId }) {
     const [userTransactions, setUserTransactions] = useState([])
     const [reloadTransaction, setReloadTransaction] = useState(false)
     const [userTags, setUserTags] = useState(undefined)
@@ -67,31 +68,33 @@ export default function Wallet({ walletId, userId }) {
         if (userTags != undefined) {
             return (
                 <>
-                    <Container justify="center" fluid responsive>
-                        <Row gap={2} >
-                            {/* Tablella transazioni */}
-                            <Col>
-                                <Text h2>Your transactions</Text>
-                                <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
-                            </Col>
+                    <Row>
+                        <Col flex="2" >
+                            <Text h2>Your transactions</Text>
+                        </Col>
+                    </Row>
+                    <Row >
+                        {/* Tablella transazioni */}
 
-                            {/* GRAFICO */}
-                            <Col gap={4}>
-                                <Spacer y={5} />
-                                <TrendGraph userTransactions={userTransactions} />
-                                <center>
-                                    <Balance userTransactions={userTransactions} />
-                                </center>
-                            </Col>
-                        </Row>
+                        <Col flex="2" >
+                            <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
+                        </Col>
 
-                        {/* Form per aggiungere campo */}
-                        <Row>
-                            <Col>
-                                <AddTransactionFrom setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
-                            </Col>
-                        </Row>
-                    </Container>
+                        {/* GRAFICO */}
+                        <Col flex="2" offset={1}>
+                            <TrendGraph userTransactions={userTransactions} />
+                            <center>
+                                <Balance userTransactions={userTransactions} />
+                            </center>
+                        </Col>
+                    </Row>
+                    <br/>
+                    {/* Form per aggiungere campo */}
+                    <Row justify={"center"}>
+                        <Col>
+                            <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
+                        </Col>
+                    </Row>
                 </>
             )
         } else {
@@ -109,3 +112,5 @@ export default function Wallet({ walletId, userId }) {
         </>
     )
 }
+
+export default Wallet

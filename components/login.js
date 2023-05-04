@@ -1,93 +1,90 @@
-import { useRef, useState, useEffect } from "react"
-import Alert from "./general/Alert";
-import { getUserId } from "../lib/api_query";
-import { Button, Input, Container, Row, Col, Spacer, Text } from "@nextui-org/react";
-import { Mail } from "./login/mail";
-import { Password } from "./login/password";
+import { useState } from "react"
+import { getUserId } from "../lib/apiQuery";
+import { Button, Form, Input, Space } from 'antd';
+import Warning from "./Alert";
+import Title from "./Title";
 
-//login form
 function Login({ setUserName, setUserId }) {
-    const name = useRef(null)
-    const pw = useRef(null)
     const [showLoginAlert, setShowLoginAlert] = useState(false)
 
-    async function postLogin() {
-        const response = await getUserId(name.current.value, pw.current.value)
-
+    async function postLogin(username, password) {
+        const response = await getUserId(username, password)
         if (response) {
             setUserId(response)
-            setUserName(name.current.value)
+            setUserName(username)
             setShowLoginAlert(false)
         } else {
             setShowLoginAlert(true)
         }
     }
 
-    useEffect(() => {
-        const listener = event => {
-            if (event.code === "Enter" || event.code === "NumpadEnter") {
-                event.preventDefault();
-                postLogin();
-            }
-        };
-        document.addEventListener("keydown", listener);
-        return () => {
-            document.removeEventListener("keydown", listener);
-        };
-    }, []);
+    const onFinish = (values) => {
+        postLogin(values.username, values.password)
+    };
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
 
-    return (
-        <>
-            <Container align="center" xs responsive fluid>
-                <Container justify="center" fluid responsive>
-                    <Row justify="center" align="center">
-                        <Col>
-                            <Text h3>Login</Text>
-                            <Spacer y={1.5} />
-                            <Input
-                                aria-label="Username"
-                                ref={name}
-                                clearable
-                                bordered
-                                width="60%"
-                                color="primary"
-                                size="lg"
-                                placeholder="Username"
-                                contentLeft={<Mail fill="currentColor" />}
-                            />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Spacer y={1} />
-                            <Input.Password
-                                aria-label="Password"
-                                ref={pw}
-                                clearable
-                                bordered
-                                width="60%"
-                                color="primary"
-                                size="md"
-                                placeholder="Password"
-                                contentLeft={<Password fill="currentColor" />}
-                            />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Spacer y={1} />
-                            <Button onPress={postLogin} color="gradient" className="btn btn-outline-primary background-color:#172231">Entra</Button>
-                        </Col>
-                    </Row>
-                </Container>
+    function renderLogin() {
+        return (
+            <>
+                <center>
+                    <Title content="Login" />
+                    <br />
+                    <Form
+                        name="normal_login"
+                        className="login-form"
+                        initialValues={{
+                            remember: true,
+                        }}
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                        style={{
+                            maxWidth: 400,
+                        }}
+                    >
+                        <Form.Item
+                            label="Username"
+                            name="username"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your username!',
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
 
-                <div>
-                    <Alert show={showLoginAlert} message='Incorrect password or username' />
-                </div>
-            </Container>
+                        <Form.Item
+                            label="Password"
+                            name="password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your password!',
+                                },
+                            ]}
+                        >
+                            <Input.Password />
+                        </Form.Item>
 
-        </>
-    )
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    <div>
+                        <Warning show={showLoginAlert} message='Incorrect password or username' />
+                    </div>
+                    </Form>
+                </center>
+            </>
+        )
+    }
+
+    return renderLogin();
 }
 
-export default Login
+export default Login;

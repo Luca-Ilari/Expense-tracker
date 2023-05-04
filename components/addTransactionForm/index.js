@@ -1,11 +1,11 @@
-import { addTransaction } from "../../lib/api_query";
-import { Text, Button, Grid } from "@nextui-org/react";
+import { addTransaction } from "../../lib/apiQuery";
+import { Button, Row, Col } from "antd";
 import { useRef, useState } from "react";
-import { BaseDropDown } from "./tag_dropdown/Base_dropdown";
+import BaseDropDown from "../DropDown";
 import Field from "./Field";
-import Alert from "../general/Alert";
+import Warning from "../Alert";
 
-export default function AddTransactionFrom({ setReloadTransaction, walletId, userTags }) {
+export default function AddTransactionForm({ setReloadTransaction, walletId, userTags }) {
     const [inputDate, setInputDate] = useState(null)
     const [inputAmount, setInputAmount] = useState(0)
     const [inputDesc, setInputDesc] = useState("")
@@ -13,8 +13,6 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
     const [showRequiredFieldAlert, setShowRequiredFieldAlert] = useState(false)
     const [values, setValues] = useState([])
     const parentRef = useRef()
-
-
 
     function insertValues(id, value) {
         const found = values.find(fieldData => fieldData.id === id)
@@ -61,38 +59,36 @@ export default function AddTransactionFrom({ setReloadTransaction, walletId, use
             setReloadTransaction(true)
         } else {
             setShowRequiredFieldAlert(true)
-
         }
     }
 
     return (
         <>
-            <center>
-                <Grid.Container gap={2}>
-                    <Grid>
-                        <div ref={parentRef}>
-                            <Field setFieldInput={setInputDate} type="date" id="2" insertValues={insertValues} undesiredInput="" />
-                            <Field setFieldInput={setInputAmount} type="number" id="3" insertValues={insertValues} undesiredInput="" />
-                            <Field setFieldInput={setInputDesc} type="text" id="4" insertValues={insertValues} undesiredInput="" />
-                        </div>
-                        <div>
-                            <BaseDropDown
-                                defaultText={""}
-                                userTags={userTags}
-                                setSelectedTagId={setSelectedTagId}
-                            />
-                        </div>
-                    </Grid>
-                    <Grid>
-                        <Button onPress={getInput}>Add</Button>
-                    </Grid>
-                    <Grid>
-                        <div>
-                            <Alert show={showRequiredFieldAlert} message={"All fields are required!"} />
-                        </div>
-                    </Grid>
-                </Grid.Container>
-            </center>
+            <Row gutter={{
+                xs: 8,
+                sm: 16,
+                md: 24,
+                lg: 32,
+            }}>
+                <Col ref={parentRef}>
+                    <Field setFieldInput={setInputDate} type="date" id="1" insertValues={insertValues} undesiredInput="" />
+                    <Field setFieldInput={setInputAmount} type="number" id="2" insertValues={insertValues} undesiredInput="" />
+                    <Field setFieldInput={setInputDesc} type="text" id="3" insertValues={insertValues} undesiredInput="" />
+                </Col>
+                <Col>
+                    <BaseDropDown
+                        defaultText={""}
+                        userTags={userTags}
+                        setSelectedTagId={setSelectedTagId}
+                    />
+                </Col>
+                <Col>
+                    <Button onClick={getInput}>Add</Button>
+                </Col >
+            </Row >
+            <Row>
+                <Warning show={showRequiredFieldAlert} message={"All fields are required!"} />
+            </Row>
         </>
     )
 }
