@@ -66,36 +66,30 @@ function Wallet({ walletId, userId }) {
 
     function RenderWallet() {
         if (userTags != undefined) {
-            return (
-                <>
-                    <Row>
-                        <Col flex="2" >
-                            <Text h2>Your transactions</Text>
-                        </Col>
-                    </Row>
-                    <Row >
-                        {/* Tablella transazioni */}
-
-                        <Col flex="2" >
-                            <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
-                        </Col>
-
-                        {/* GRAFICO */}
-                        <Col flex="2" offset={1}>
-                            <TrendGraph userTransactions={userTransactions} />
-                            <center>
-                                <Balance userTransactions={userTransactions} />
-                            </center>
-                        </Col>
-                    </Row>
-                    <br/>
-                    {/* Form per aggiungere campo */}
-                    <Row justify={"center"}>
-                        <Col>
-                            <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
-                        </Col>
-                    </Row>
-                </>
+            return (<>
+                <Row>
+                    <Col>
+                        <Text h2>Your transactions</Text>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={12}>
+                        <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
+                    </Col>
+                    <Col span={12}>
+                        <TrendGraph userTransactions={userTransactions} />
+                        <center>
+                            <Balance userTransactions={userTransactions} />
+                        </center>
+                    </Col>
+                </Row>
+                <br />
+                <Row justify={"center"}>
+                    <Col>
+                        <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
+                    </Col>
+                </Row>
+            </>
             )
         } else {
             return (
