@@ -26,33 +26,29 @@ function HomePage({ userId }) {
     function renderMain() {
         return (
             <>
-                <Row>
+
+                <Row justify="space-around">
                     <Col>
                         {Object.keys(userWalletsJson).length > 1 ? (
                             <Title content="Your wallets" />
                         ) : (
                             <Title content="Your wallet" />
                         )}
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
                         {canLoad ? (
-                            
-                                <Tabs
-                                    defaultActiveKey="1"
-                                    tabPosition="left"
-                                    size="small"
-                                    items={userWalletsJson.map((key, value) => (
-                                        {
-                                            key: value,
-                                            label: (<EditableText callback={(text) => updateWalletName(text, key.wallet_id)}>{key.wallet_name}</EditableText>),
-                                            children: (<Wallet walletId={key.wallet_id} userId={userId} />),
-                                            closable: false,
-                                        }
-                                    ))}
-                                />
-                            
+                            <Tabs
+                                defaultActiveKey="1"
+                                tabPosition="top"
+                                size="small"
+                                items={userWalletsJson.map((key, value) => (
+                                    {
+                                        key: value,
+                                        label: (<EditableText callback={(text) => updateWalletName(text, key.wallet_id)}>{key.wallet_name}</EditableText>),
+                                        children: (<Wallet walletId={key.wallet_id} userId={userId} />),
+                                        closable: false,
+                                    }
+                                ))}
+                            />
+
                         ) : (
                             <LoadingAnimation />
 

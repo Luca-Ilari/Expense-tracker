@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Container, Text } from '@nextui-org/react';
-import { Col, Row } from 'antd';
+import { Text } from '@nextui-org/react';
+import { Card, Col, Row, Space } from 'antd';
 import { TransactionsTabel, Balance } from './walletComponents';
 import { tryGetTransactions, getUserTags } from "../lib/apiQuery";
 import TrendGraph from './trendGraph';
@@ -66,30 +66,34 @@ function Wallet({ walletId, userId }) {
 
     function RenderWallet() {
         if (userTags != undefined) {
-            return (<>
-                <Row>
-                    <Col>
-                        <Text h2>Your transactions</Text>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col span={12}>
-                        <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
-                    </Col>
-                    <Col span={12}>
-                        <TrendGraph userTransactions={userTransactions} />
-                        <center>
-                            <Balance userTransactions={userTransactions} />
-                        </center>
-                    </Col>
-                </Row>
-                <br />
-                <Row justify={"center"}>
-                    <Col>
-                        <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
-                    </Col>
-                </Row>
-            </>
+            return (
+                <>
+                    <Card>
+                        <Row>
+                            <Col>
+                                <Text h2>Your transactions</Text>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col span={12}>
+                                <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
+                            </Col>
+                            <Col span={12}>
+                                <TrendGraph userTransactions={userTransactions} />
+                                <center>
+                                    <Balance userTransactions={userTransactions} />
+                                </center>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row >
+                            <Col>
+                                <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
+                            </Col>
+                        </Row>
+
+                    </Card>
+                </>
             )
         } else {
             return (
