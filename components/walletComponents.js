@@ -17,6 +17,7 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                 bordered
                 shadow={false}
                 color="secondary"
+                style={{width: '800px'}}
                 aria-label="Transactions"
             >
                 <Table.Header>
@@ -56,7 +57,7 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                                 </Table.Cell>
                             )}
                             <Table.Cell key="date">{transaction.date}</Table.Cell>
-                            <Table.Cell><EditableText callback={(text) => updateTransaction(text, transaction.transaction_id)}>{transaction.description}</EditableText></Table.Cell>
+                            <Table.Cell><EditableText callback={(text) => updateTransaction(text, transaction.transaction_id)} maxLength={30}>{transaction.description}</EditableText></Table.Cell>
                             <Table.Cell key="tags"><EditTransactionTagDropdown transactionId={transaction.transaction_id} initialTag={transaction.tag_name} initialTagId={transaction.tag_id} userTags={userTags} /></Table.Cell>
                         </Table.Row>
                     ))}

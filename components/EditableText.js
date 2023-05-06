@@ -1,7 +1,13 @@
 import { Typography } from 'antd';
+import { useState } from 'react';
 const { Paragraph } = Typography;
 
-function EditableText({ callback, children }) {
+function EditableText({ callback, children, maxLength }) {
+    const [editableStr, setEditableStr] = useState(children)
+    function changeText(str){
+        callback(str);
+        setEditableStr(str);
+    }
     return (
         <>
             <Paragraph
@@ -9,11 +15,11 @@ function EditableText({ callback, children }) {
                     margin: 0,
                 }}
                 editable={{
-                    maxLength: 20,
-                    onChange: callback,
+                    maxLength: maxLength,
+                    onChange: changeText,
                 }}
             >
-                {children}
+                {editableStr}
             </Paragraph>
         </>
     )
