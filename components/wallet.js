@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Text } from '@nextui-org/react';
-import { Card, Col, Row, Skeleton, Space } from 'antd';
+import { Card, Col, Row, Skeleton } from 'antd';
 import { TransactionsTabel, Balance } from './walletComponents';
 import { tryGetTransactions, getUserTags } from "../lib/apiQuery";
 import TrendGraph from './trendGraph';
 import AddTransactionForm from './addTransactionForm';
-import LoadingAnimation from './LoadingAnimation';
 
 function Wallet({ walletId, userId }) {
     const [userTransactions, setUserTransactions] = useState([])
@@ -124,7 +123,6 @@ function Wallet({ walletId, userId }) {
                                     <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
                                 </Col>
                             </Row>
-
                         </Card>
                     </Skeleton>
                 </>

@@ -11,3 +11,5 @@ lib/supabase.js
 
 # production
 /build
+
+/.env.local
