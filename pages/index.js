@@ -31,7 +31,7 @@ function Index({ data, userId, userWalletsJson }) {
                         ) : (
                             <Title content="Your wallet" />
                         )}
-                        {/* <Tabs
+                        <Tabs
                             defaultActiveKey="1"
                             tabPosition="top"
                             style={{
@@ -45,7 +45,7 @@ function Index({ data, userId, userWalletsJson }) {
                                     closable: false,
                                 }
                             ))}
-                        /> */}
+                        />
                     </Col>
                 </Row>
             </>
