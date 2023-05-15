@@ -37,14 +37,14 @@ function Index({ data, userId, userWalletsJson }) {
                             style={{
                                 height: "100vh",
                             }}
-                            items={userWalletsJson.map((key, value) => (
-                                {
-                                    key: value,
-                                    label: (<EditableText callback={(text) => updateWalletName(text, key.wallet_id)} maxLength={20}>{key.wallet_name}</EditableText>),
-                                    children: (<Wallet walletId={key.wallet_id} userId={userId} />),
-                                    closable: false,
-                                }
-                            ))}
+                            // items={userWalletsJson.map((key, value) => (
+                            //     {
+                            //         key: value,
+                            //         label: (<EditableText callback={(text) => updateWalletName(text, key.wallet_id)} maxLength={20}>{key.wallet_name}</EditableText>),
+                            //         children: (<Wallet walletId={key.wallet_id} userId={userId} />),
+                            //         closable: false,
+                            //     }
+                            // ))}
                         />
                     </Col>
                 </Row>
