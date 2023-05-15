@@ -47,7 +47,7 @@ function Wallet({ walletId, userId }) {
         return tempUserTags
     }
 
-    useEffect(() => {
+    useEffect(() => {//useMemo??
         async function awaitGetTransactions() {
             const transactionsJson = await tryGetTransactions(walletId);
             setUserTransactions(await populateUserTransactions(transactionsJson))
@@ -56,7 +56,7 @@ function Wallet({ walletId, userId }) {
         awaitGetTransactions();
     }, [walletId, reloadTransaction]);
 
-    useEffect(() => {
+    useEffect(() => {//useMemo?
         async function awaitUserGetTags() {
             const userTagsJson = await getUserTags(userId)
             setUserTags(await populateUserTags(userTagsJson))

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { getSession } from 'next-auth/react';
-import { getWallets, asyncChangeWalletName } from '../lib/apiQuery';
+import { asyncChangeWalletName } from '../lib/apiQuery';
 import Wallet from '../components/Wallet';
 import { Tabs, Col, Row, Skeleton, Avatar } from "antd";
 import LoadingAnimation from '../components/LoadingAnimation';
 import Title from '../components/Title';
 import EditableText from '../components/EditableText';
+import { getWallets, getUserId } from '../lib/supabase';
 
 /*  TO-DO
 Date format of transaction to dd-mm-yyyy 
@@ -15,7 +16,6 @@ Password encryption
 */
 
 function Index({ data, userId, userWalletsJson }) {
-
     async function updateWalletName(newName, walletId) {
         await asyncChangeWalletName(newName, walletId)
     }
@@ -60,7 +60,7 @@ export default Index
 
 export async function getServerSideProps(contex) {
     const session = await getSession(contex)
-    const userId = 1
+
     if (!session) {
         return {
             redirect: {
@@ -70,16 +70,9 @@ export async function getServerSideProps(contex) {
             props: {}
         }
     } else {
-        const response = await fetch('http://localhost:3000/api/get_wallets', {
-            method: 'POST',
-            body: JSON.stringify({
-                userId: userId,
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        const userWalletsJson = await response.json()
+
+        const userId = await getUserId(session.user.email);
+        const userWalletsJson = await getWallets(userId);
 
         return {
             props: {
