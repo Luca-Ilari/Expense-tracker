@@ -2,18 +2,24 @@ import { Text, Table } from '@nextui-org/react';
 import { Statistic } from 'antd';
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import EditTransactionTagDropdown from './editTransactionTag/index';
+import EditableText from './EditableText';
 
 export function TransactionsTabel({ userTransactions, userTags }) {
+    function updateTransaction(text, id) {
+        console.log(text)
+        console.log(id)
+        //call api to change desc
+    }
+
     return (
         <>
             <Table
                 bordered
                 shadow={false}
                 color="secondary"
+                style={{width: '800px'}}
                 aria-label="Transactions"
-                css={{
-
-                }}>
+            >
                 <Table.Header>
                     <Table.Column scope="col">Amount</Table.Column>
                     <Table.Column scope="col">Date</Table.Column>
@@ -21,8 +27,8 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                     <Table.Column scope="col">Tag</Table.Column>
                 </Table.Header>
                 <Table.Body>
-                    {userTransactions.map(transaction => (
-                        <Table.Row key={transaction.transaction_id}>
+                    {userTransactions.map((transaction, index) => (
+                        <Table.Row key={index}>
                             {transaction.amount > 0 ? (
                                 <Table.Cell key="amount">
                                     <Statistic
@@ -51,7 +57,7 @@ export function TransactionsTabel({ userTransactions, userTags }) {
                                 </Table.Cell>
                             )}
                             <Table.Cell key="date">{transaction.date}</Table.Cell>
-                            <Table.Cell key="description">{transaction.description}</Table.Cell>
+                            <Table.Cell><EditableText callback={(text) => updateTransaction(text, transaction.transaction_id)} maxLength={30}>{transaction.description}</EditableText></Table.Cell>
                             <Table.Cell key="tags"><EditTransactionTagDropdown transactionId={transaction.transaction_id} initialTag={transaction.tag_name} initialTagId={transaction.tag_id} userTags={userTags} /></Table.Cell>
                         </Table.Row>
                     ))}

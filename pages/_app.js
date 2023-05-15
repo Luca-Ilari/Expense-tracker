@@ -1,12 +1,11 @@
-//import 'bootstrap/dist/css/bootstrap.css'
-import { NextUIProvider, createTheme } from '@nextui-org/react';
-
-const darkTheme = createTheme({ type: "dark" });
+import Navbar from "../components/Navbar";
+import { SessionProvider } from "next-auth/react";
 
 export default function MyApp({ Component, pageProps }) {
     return (
-        //<NextUIProvider theme={darkTheme}>
+        <SessionProvider>
+            <Navbar />
             <Component {...pageProps} />
-        //</NextUIProvider>
+        </SessionProvider>
     );
 }

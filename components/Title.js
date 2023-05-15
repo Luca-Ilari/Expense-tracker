@@ -1,4 +1,3 @@
-import { Text } from '@nextui-org/react';
 import { Typography } from 'antd';
 
 function Title({ content }) {

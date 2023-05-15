@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { getUserId } from "../lib/apiQuery";
-import { Button, Form, Input, Space } from 'antd';
+import { Button, Form, Input } from 'antd';
 import Warning from "./Alert";
 import Title from "./Title";
 

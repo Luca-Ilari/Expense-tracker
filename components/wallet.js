@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Container, Text } from '@nextui-org/react';
-import { Col, Row } from 'antd';
+import { Text } from '@nextui-org/react';
+import { Card, Col, Row, Skeleton } from 'antd';
 import { TransactionsTabel, Balance } from './walletComponents';
 import { tryGetTransactions, getUserTags } from "../lib/apiQuery";
 import TrendGraph from './trendGraph';
 import AddTransactionForm from './addTransactionForm';
-import LoadingAnimation from './LoadingAnimation';
 
 function Wallet({ walletId, userId }) {
     const [userTransactions, setUserTransactions] = useState([])
     const [reloadTransaction, setReloadTransaction] = useState(false)
     const [userTags, setUserTags] = useState(undefined)
+    const [loading, setLoading] = useState(Boolean(true))
 
     class transaction {
         constructor(jsonTransaction) {
@@ -47,7 +47,7 @@ function Wallet({ walletId, userId }) {
         return tempUserTags
     }
 
-    useEffect(() => {
+    useEffect(() => {//useMemo??
         async function awaitGetTransactions() {
             const transactionsJson = await tryGetTransactions(walletId);
             setUserTransactions(await populateUserTransactions(transactionsJson))
@@ -56,7 +56,7 @@ function Wallet({ walletId, userId }) {
         awaitGetTransactions();
     }, [walletId, reloadTransaction]);
 
-    useEffect(() => {
+    useEffect(() => {//useMemo?
         async function awaitUserGetTags() {
             const userTagsJson = await getUserTags(userId)
             setUserTags(await populateUserTags(userTagsJson))
@@ -66,51 +66,71 @@ function Wallet({ walletId, userId }) {
 
     function RenderWallet() {
         if (userTags != undefined) {
+            setLoading(false)
             return (
                 <>
-                    <Row>
-                        <Col flex="2" >
-                            <Text h2>Your transactions</Text>
-                        </Col>
-                    </Row>
-                    <Row >
-                        {/* Tablella transazioni */}
-
-                        <Col flex="2" >
-                            <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
-                        </Col>
-
-                        {/* GRAFICO */}
-                        <Col flex="2" offset={1}>
-                            <TrendGraph userTransactions={userTransactions} />
-                            <center>
-                                <Balance userTransactions={userTransactions} />
-                            </center>
-                        </Col>
-                    </Row>
-                    <br/>
-                    {/* Form per aggiungere campo */}
-                    <Row justify={"center"}>
-                        <Col>
-                            <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
-                        </Col>
-                    </Row>
+                    <Skeleton loading={loading}>
+                        <Row>
+                            <Col>
+                                <Text h2>Your transactions</Text>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col span={12}>
+                                <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
+                            </Col>
+                            <Col span={12}>
+                                <TrendGraph userTransactions={userTransactions} />
+                                <center>
+                                    <Balance userTransactions={userTransactions} />
+                                </center>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row >
+                            <Col>
+                                <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
+                            </Col>
+                        </Row>
+                    </Skeleton>
                 </>
             )
         } else {
+            setLoading(true)
             return (
                 <>
-                    <LoadingAnimation />
+                    <Skeleton loading={loading}>
+                        <Card>
+                            <Row>
+                                <Col>
+                                    <Text h2>Your transactions</Text>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col span={12}>
+                                    <TransactionsTabel userTransactions={userTransactions} userTags={userTags} />
+                                </Col>
+                                <Col span={12}>
+                                    <TrendGraph userTransactions={userTransactions} />
+                                    <center>
+                                        <Balance userTransactions={userTransactions} />
+                                    </center>
+                                </Col>
+                            </Row>
+                            <br />
+                            <Row >
+                                <Col>
+                                    <AddTransactionForm setReloadTransaction={setReloadTransaction} walletId={walletId} userTags={userTags} />
+                                </Col>
+                            </Row>
+                        </Card>
+                    </Skeleton>
                 </>
             )
         }
     }
 
-    return (
-        <>
-            <RenderWallet />
-        </>
-    )
+    return RenderWallet()
 }
 
 export default Wallet
