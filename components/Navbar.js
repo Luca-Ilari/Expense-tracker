@@ -1,10 +1,30 @@
 import { signIn, signOut, useSession } from "next-auth/react"
+import { Menu, Avatar } from "antd";
 
-export default function Navbar() {
+function Navbar() {
     const { data: session, status } = useSession()
+    console.log(JSON.stringify(session));
+
+    const items = [
+        {
+            label: 'Your Wallets',
+            key: '/',
+        },
+        {
+            icon: (<Avatar size={30} src={session.user.image} />),
+            label: 'Your profile',
+            key: 'profile',
+        },
+    ]
+
+    const handlePageChange = (e) => {
+        console.log('click ', e);
+    }
 
     return (
         <>
+            <Menu onClick={handlePageChange} mode="horizontal" items={items} />
+
             {!session && status !== 'authenticated' && (
                 <button onClick={e => {
                     e.preventDefault()
@@ -29,3 +49,5 @@ export default function Navbar() {
         </>
     )
 }
+
+export default Navbar;

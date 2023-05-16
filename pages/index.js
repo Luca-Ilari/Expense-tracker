@@ -23,7 +23,6 @@ function Index({ data, userId, userWalletsJson }) {
     function renderIndex() {
         return (
             <>
-                <Avatar size={64} src={data.user.image} />
                 <Row justify="space-evenly">
                     <Col>
                         {Object.keys(userWalletsJson).length > 1 ? (
@@ -31,21 +30,21 @@ function Index({ data, userId, userWalletsJson }) {
                         ) : (
                             <Title content="Your wallet" />
                         )}
-                        <Tabs
+                        {/* <Tabs
                             defaultActiveKey="1"
                             tabPosition="top"
                             style={{
                                 height: "100vh",
                             }}
-                            // items={userWalletsJson.map((key, value) => (
-                            //     {
-                            //         key: value,
-                            //         label: (<EditableText callback={(text) => updateWalletName(text, key.wallet_id)} maxLength={20}>{key.wallet_name}</EditableText>),
-                            //         children: (<Wallet walletId={key.wallet_id} userId={userId} />),
-                            //         closable: false,
-                            //     }
-                            // ))}
-                        />
+                            items={userWalletsJson.map((key, value) => (
+                                {
+                                    key: value,
+                                    label: (<EditableText callback={(text) => updateWalletName(text, key.wallet_id)} maxLength={20}>{key.wallet_name}</EditableText>),
+                                    children: (<Wallet walletId={key.wallet_id} userId={userId} />),
+                                    closable: false,
+                                }
+                            ))}
+                        /> */}
                     </Col>
                 </Row>
             </>
