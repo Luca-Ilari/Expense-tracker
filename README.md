@@ -1,16 +1,40 @@
-# Expense-tracker-nextjs
+# Welcome to Remix!
 
-This is a simple project made with next-js and supabase that keep track of your expenses.
-It's still in development and has some bugs but I'm working on it :thumbsup:
+- 📖 [Remix docs](https://remix.run/docs)
 
-Main Page after login 
-![NewGui](https://github.com/Luca-Ilari/Expense-tracker-nextjs/blob/new-gui/NewGui.png)
+## Development
 
-## To use this project
-1. Run ```npm install``` in the project directory
-2. Create the file lib/supabase.js and add the following code replacing SUPABASE_URL and ANON_KEY with your own supabase db.
+Run the dev server:
+
+```shellscript
+npm run dev
 ```
-import { createClient } from '@supabase/supabase-js'
-export const supabase = createClient('replace_with_SUPABASE_URL', 'replace_with_ANON_KEY')
+
+## Deployment
+
+First, build your app for production:
+
+```sh
+npm run build
 ```
-3. You can find how the database is designed [here](https://github.com/Luca-Ilari/Expense-tracker-nextjs/blob/main/Db.png)
+
+Then run the app in production mode:
+
+```sh
+npm start
+```
+
+Now you'll need to pick a host to deploy it to.
+
+### DIY
+
+If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+
+Make sure to deploy the output of `npm run build`
+
+- `build/server`
+- `build/client`
+
+## Styling
+
+This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
