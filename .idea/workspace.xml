@@ -5,40 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7450655e-f73a-434a-ab5c-cd01201e8e4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/db.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/_nav.settings.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/_nav.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/_nav.wallets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Db.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewGui.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Alert.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/DropDown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/EditableText.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/LoadingAnimation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Navbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Title.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/addTransactionForm/Field.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/addTransactionForm/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/editTransactionTag/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/trendGraph/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wallet.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/walletComponents.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apiQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/supabase.js" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/_nav._tnav.transactions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/_nav._tnav.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/_nav._tnav.wallets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/_nav._index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/_nav._index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/_nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/_nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/_nav.wallets.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_document.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/add_trasaction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/auth/[...nextauth].js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/edit_transaction/change_selected_tag.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/edit_transaction/change_wallet_name.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/get_tags.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/get_transactions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,22 +31,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;rebase-remix&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lucai/Documents/GitHub/Expense-tracker-nextjs&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\lucai\\Documents\\GitHub\\Expense-tracker-nextjs\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "rebase-remix",
+    "last_opened_file_path": "C:/Users/lucai/Documents/GitHub/Expense-tracker-nextjs/app/routes",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "C:\\Users\\lucai\\Documents\\GitHub\\Expense-tracker-nextjs\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lucai\Documents\GitHub\Expense-tracker-nextjs\app\routes" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\lucai\Documents\GitHub\Expense-tracker-nextjs\app\components" />
     </key>
@@ -97,7 +75,7 @@
       <workItem from="1720898046823" duration="2049000" />
       <workItem from="1720900291707" duration="4137000" />
       <workItem from="1720905631432" duration="7000" />
-      <workItem from="1720942306370" duration="4811000" />
+      <workItem from="1720942306370" duration="9422000" />
     </task>
     <servers />
   </component>
