@@ -5,8 +5,8 @@ import {Progress} from "~/components/ui/progress";
 
 export const meta: MetaFunction = () => {
     return [
-        {title: "New Remix App"},
-        {name: "description", content: "Welcome to Remix!"},
+        {title: "Expense tracker"},
+        {name: "description", content: "Expense tracker made with remix"},
     ];
 };
 

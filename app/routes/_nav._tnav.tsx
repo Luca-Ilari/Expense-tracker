@@ -1,5 +1,5 @@
 import {json, Link, Outlet} from "@remix-run/react";
-import {Badge, CreditCard, LineChart, LogsIcon, Package, ShoppingCart, Users} from "lucide-react";
+import {CreditCard, LineChart, LogsIcon} from "lucide-react";
 
 export const loader = () => {
     return json({wallets: {id: 1}})
