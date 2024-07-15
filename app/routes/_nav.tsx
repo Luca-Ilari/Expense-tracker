@@ -1,5 +1,5 @@
 import {Link, Outlet} from "@remix-run/react";
-import {CircleUser, Menu, Package2, Search, TrendingUp} from "lucide-react"
+import {CircleUser, Menu, TrendingUp} from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -10,7 +10,6 @@ import {
 } from "~/components/ui/dropdown-menu"
 import {Sheet, SheetContent, SheetTrigger} from "~/components/ui/sheet"
 import {Button} from "~/components/ui/button"
-import {Input} from "~/components/ui/input"
 
 const NavBar = () => {
     return (
