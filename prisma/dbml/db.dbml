@@ -1,0 +1,48 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id Int [pk, increment]
+  email String [not null]
+  userTags UserTag [not null]
+  userAccounts UserAccount [not null]
+  transactions Transaction [not null]
+}
+
+Table UserAccount {
+  id Int [pk, increment]
+  User User [not null]
+  userId Int [not null]
+  Transaction Transaction [not null]
+}
+
+Table Transaction {
+  id Int [pk, increment]
+  date DateTime [not null]
+  tag UserTag
+  tagId Int [not null]
+  account UserAccount
+  accountId Int
+  User User
+  userId Int
+}
+
+Table UserTag {
+  id Int [pk, increment]
+  name String [not null]
+  description String
+  user User [not null]
+  userId Int [not null]
+  usedInTransaction Transaction [not null]
+}
+
+Ref: UserAccount.userId > User.id
+
+Ref: Transaction.tagId > UserTag.id
+
+Ref: Transaction.accountId > UserAccount.id
+
+Ref: Transaction.userId > User.id
+
+Ref: UserTag.userId > User.id

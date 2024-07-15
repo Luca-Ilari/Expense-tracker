@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator dbml {
+  provider   = "prisma-dbml-generator"
+  output     = "./dbml"
+  outputName = "db.dbml"
+}
+
 model User {
   id           Int           @id @default(autoincrement())
   email        String
@@ -27,14 +33,14 @@ model UserAccount {
 }
 
 model Transaction {
-  id       Int          @id @default(autoincrement())
-  date     DateTime
-  tag      UserTag?     @relation(fields: [tagId], references: [id])
-  tagId    Int
-  Wallet   UserAccount? @relation(fields: [walletId], references: [id])
-  walletId Int?
-  User     User?        @relation(fields: [userId], references: [id])
-  userId   Int?
+  id        Int          @id @default(autoincrement())
+  date      DateTime
+  tag       UserTag?     @relation(fields: [tagId], references: [id])
+  tagId     Int
+  account   UserAccount? @relation(fields: [accountId], references: [id])
+  accountId Int?
+  User      User?        @relation(fields: [userId], references: [id])
+  userId    Int?
 }
 
 model UserTag {
