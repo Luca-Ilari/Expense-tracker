@@ -6,11 +6,11 @@ Table User {
   id Int [pk, increment]
   email String [not null]
   userTags UserTag [not null]
-  userAccounts UserAccount [not null]
+  userAccounts UserBankAccount [not null]
   transactions Transaction [not null]
 }
 
-Table UserAccount {
+Table UserBankAccount {
   id Int [pk, increment]
   User User [not null]
   userId Int [not null]
@@ -20,10 +20,10 @@ Table UserAccount {
 Table Transaction {
   id Int [pk, increment]
   date DateTime [not null]
+  bankAccount UserBankAccount
+  bankAccountId Int
   tag UserTag
   tagId Int [not null]
-  account UserAccount
-  accountId Int
   User User
   userId Int
 }
@@ -37,11 +37,11 @@ Table UserTag {
   usedInTransaction Transaction [not null]
 }
 
-Ref: UserAccount.userId > User.id
+Ref: UserBankAccount.userId > User.id
+
+Ref: Transaction.bankAccountId > UserBankAccount.id
 
 Ref: Transaction.tagId > UserTag.id
-
-Ref: Transaction.accountId > UserAccount.id
 
 Ref: Transaction.userId > User.id
 

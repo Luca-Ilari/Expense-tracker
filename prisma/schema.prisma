@@ -17,14 +17,14 @@ generator dbml {
 }
 
 model User {
-  id           Int           @id @default(autoincrement())
+  id           Int               @id @default(autoincrement())
   email        String
   userTags     UserTag[]
-  userAccounts UserAccount[]
+  userAccounts UserBankAccount[]
   transactions Transaction[]
 }
 
-model UserAccount {
+model UserBankAccount {
   // Bank account of the user
   id          Int           @id @default(autoincrement())
   User        User          @relation(fields: [userId], references: [id])
@@ -33,14 +33,14 @@ model UserAccount {
 }
 
 model Transaction {
-  id        Int          @id @default(autoincrement())
-  date      DateTime
-  tag       UserTag?     @relation(fields: [tagId], references: [id])
-  tagId     Int
-  account   UserAccount? @relation(fields: [accountId], references: [id])
-  accountId Int?
-  User      User?        @relation(fields: [userId], references: [id])
-  userId    Int?
+  id            Int              @id @default(autoincrement())
+  date          DateTime
+  bankAccount   UserBankAccount? @relation(fields: [bankAccountId], references: [id])
+  bankAccountId Int?
+  tag           UserTag?         @relation(fields: [tagId], references: [id])
+  tagId         Int
+  User          User?            @relation(fields: [userId], references: [id])
+  userId        Int?
 }
 
 model UserTag {
