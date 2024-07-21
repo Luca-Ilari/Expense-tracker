@@ -1,8 +1,15 @@
+import {Input} from "~/components/ui/input";
+import {Button} from "~/components/ui/button";
+
 const AddWallet = () => {
     return (
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-        test
-        </h1>
+        <>
+        <p>Add new wallet</p>
+            <form method="POST">
+                <Input type="text" name="wallet_name"/>
+                <Button type="submit"/>
+            </form>
+        </>
     )
 }
 export default AddWallet;
